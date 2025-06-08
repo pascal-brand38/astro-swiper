@@ -1,0 +1,22 @@
+{
+  "name": "astro-swiper",
+  "version": "0.0.1",
+  "description": "Astro component for swiper",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pascal-brand38/astro-swiper.git"
+  },
+  "keywords": [
+    "swiper"
+  ],
+  "author": "Pascal Brand",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pascal-brand38/astro-swiper/issues"
+  },
+  "homepage": "https://github.com/pascal-brand38/astro-swiper#readme"
+}
