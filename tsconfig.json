@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "allowJs": true,
+    "strict": true,
+    "noImplicitAny": true,
+
+    // emit dist files
+    "allowImportingTsExtensions": false,
+    "emitDeclarationOnly": false,
+    "noEmit": false,
+    "declaration": true,
+  },
+  "extends": "astro/tsconfigs/strict",
+  "include": ["./src/**/*"]
+}

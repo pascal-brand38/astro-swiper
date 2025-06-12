@@ -1,0 +1,24 @@
+---
+// Copyright (c) Pascal Brand
+// MIT License
+
+import 'swiper/css/bundle'
+
+import type { HTMLAttributes } from 'astro/types'
+
+type Props = HTMLAttributes<"div">
+
+const {
+  class: className = '',
+  ...props
+} = Astro.props;
+
+
+---
+
+<!-- next button -->
+<div
+  class={`swiper-button-next ${className}`}
+  {...props}>
+    <slot/>
+</div>

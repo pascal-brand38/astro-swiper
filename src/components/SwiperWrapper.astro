@@ -1,0 +1,24 @@
+---
+// Copyright (c) Pascal Brand
+// MIT License
+
+import 'swiper/css/bundle'
+
+import type { HTMLAttributes } from 'astro/types'
+
+type Props = HTMLAttributes<"div">
+
+const {
+  class: className = '',
+  ...props
+} = Astro.props;
+
+
+---
+
+<!-- Slider wrapper, containing all the slides -->
+<div
+  class={`swiper-wrapper ${className}`}
+  {...props}>
+    <slot/>
+</div>

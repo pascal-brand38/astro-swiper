@@ -1,0 +1,52 @@
+---
+// Copyright (c) Pascal Brand
+// MIT License
+
+import 'swiper/css/bundle'
+
+import type { AstroSwiperType } from './index'
+
+type Props = AstroSwiperType
+
+
+const {
+  options={},
+  class: className = '',
+  ...props
+} = Astro.props;
+
+const swiperId = 'astro-swiper-' + Math.random().toString(36).slice(2, 11)
+
+---
+
+<!-- Slider main container -->
+<astro-swiper
+  class={`swiper ${swiperId} ${className}`}
+  {...props}
+  data-options={JSON.stringify(options)}
+  data-id={swiperId}>
+    <slot/>
+</astro-swiper>
+
+
+<script>
+  import Swiper from 'swiper/bundle'
+  import { register } from 'swiper/element/bundle';
+
+
+  class AstroSwiper extends HTMLElement {
+    constructor() {
+      super();
+  register();
+
+
+      // Read the message from the data attribute.
+      const options = JSON.parse(this.dataset.options || '')
+      const id = this.dataset.id    // to have more than 1 swiper in a single page
+
+      const swiper = new Swiper(`.${id}`, options)
+    }
+  }
+
+  customElements.define('astro-swiper', AstroSwiper);
+</script>
