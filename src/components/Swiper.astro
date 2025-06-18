@@ -4,7 +4,7 @@
 
 import 'swiper/css/bundle'
 
-import type { AstroSwiperType } from './index'
+import type { AstroSwiperType } from '../index'
 
 type Props = AstroSwiperType
 
@@ -12,39 +12,49 @@ type Props = AstroSwiperType
 const {
   options={},
   class: className = '',
+  uniqueClass = 'astro-swiper-' + Math.random().toString(36).slice(2, 11),
+  thumbOf = '',
   ...props
 } = Astro.props;
-
-const swiperId = 'astro-swiper-' + Math.random().toString(36).slice(2, 11)
 
 ---
 
 <!-- Slider main container -->
 <astro-swiper
-  class={`swiper ${swiperId} ${className}`}
+  class={`swiper ${uniqueClass} ${className}`}
   {...props}
   data-options={JSON.stringify(options)}
-  data-id={swiperId}>
+  data-thumbof={thumbOf}
+  data-uniqueclass={uniqueClass}
+  >
     <slot/>
 </astro-swiper>
 
 
 <script>
   import Swiper from 'swiper/bundle'
-  import { register } from 'swiper/element/bundle';
-
+  import { useSwiper, useOptions } from '../index'
 
   class AstroSwiper extends HTMLElement {
     constructor() {
       super();
-  register();
-
 
       // Read the message from the data attribute.
-      const options = JSON.parse(this.dataset.options || '')
-      const id = this.dataset.id    // to have more than 1 swiper in a single page
+      const options = JSON.parse(this.dataset.options || '{}')
+      const uniqueClass = this.dataset.uniqueclass || ''   // to have more than 1 swiper in a single page
+      const thumbOf = this.dataset.thumbof || ''
+      // if (thumbOf !== '') {
+      //   options.thumbs = { swiper: useSwiper[thumbOf], ...options.thumbs }
+      //   console.log(options.thumbs)
+      //   console.log('Thumb is set to ')
+      //   console.log(useSwiper[thumbOf])
+      // }
 
-      const swiper = new Swiper(`.${id}`, options)
+      if (thumbOf === '') {
+        const swiper = new Swiper(`.${uniqueClass}`, options)
+        useSwiper[uniqueClass] = swiper
+      }
+      useOptions[uniqueClass] = options
     }
   }
 
