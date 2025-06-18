@@ -8,7 +8,7 @@ import type { HTMLAttributes } from 'astro/types'
 export interface AstroSwiperType extends HTMLAttributes<"div"> {
   options?: SwiperOptions,
   uniqueClass?: string,
-  thumbOf?: string,
+  linkToThumbUniqueClass?: string,
 }
 
 export { default as Swiper } from './components/Swiper.astro'
@@ -21,3 +21,4 @@ export { default as SwiperWrapper } from './components/SwiperWrapper.astro'
 
 export const useSwiper: { [className: string] : Swiper; } = {};
 export const useOptions: { [className: string] : SwiperOptions; } = {};
+export const useDelaySwiper: { [className: string] : string; } = {};

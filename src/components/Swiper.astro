@@ -13,7 +13,7 @@ const {
   options={},
   class: className = '',
   uniqueClass = 'astro-swiper-' + Math.random().toString(36).slice(2, 11),
-  thumbOf = '',
+  linkToThumbUniqueClass = '',
   ...props
 } = Astro.props;
 
@@ -24,7 +24,7 @@ const {
   class={`swiper ${uniqueClass} ${className}`}
   {...props}
   data-options={JSON.stringify(options)}
-  data-thumbof={thumbOf}
+  data-linktothumbuniqueclass={linkToThumbUniqueClass}
   data-uniqueclass={uniqueClass}
   >
     <slot/>
@@ -33,7 +33,7 @@ const {
 
 <script>
   import Swiper from 'swiper/bundle'
-  import { useSwiper, useOptions } from '../index'
+  import { useSwiper, useOptions, useDelaySwiper } from '../index'
 
   class AstroSwiper extends HTMLElement {
     constructor() {
@@ -42,7 +42,7 @@ const {
       // Read the message from the data attribute.
       const options = JSON.parse(this.dataset.options || '{}')
       const uniqueClass = this.dataset.uniqueclass || ''   // to have more than 1 swiper in a single page
-      const thumbOf = this.dataset.thumbof || ''
+      const linkToThumbUniqueClass = this.dataset.linktothumbuniqueclass || ''
       // if (thumbOf !== '') {
       //   options.thumbs = { swiper: useSwiper[thumbOf], ...options.thumbs }
       //   console.log(options.thumbs)
@@ -50,11 +50,35 @@ const {
       //   console.log(useSwiper[thumbOf])
       // }
 
-      if (thumbOf === '') {
+      if (linkToThumbUniqueClass === '') {
         const swiper = new Swiper(`.${uniqueClass}`, options)
         useSwiper[uniqueClass] = swiper
+      } else {
+        if (useSwiper[linkToThumbUniqueClass] !== undefined) {
+          options.thumbs = { swiper: useSwiper[linkToThumbUniqueClass], ...options.thumbs }
+          const swiper = new Swiper(`.${uniqueClass}`, options)
+          useSwiper[uniqueClass] = swiper
+        } else {
+          // cannot create the swiper as the thumbnail swiper not created yet
+          // will be done later
+          useDelaySwiper[uniqueClass] = linkToThumbUniqueClass
+        }
       }
+
       useOptions[uniqueClass] = options
+
+      // look if any delay swiper can be created
+      Object.keys(useDelaySwiper).forEach(delayedClass => {
+        const delayedThumbClass = useDelaySwiper[delayedClass]
+        if (useSwiper[delayedThumbClass] !== undefined) {
+          const delayedOptions = useOptions[delayedClass]
+          delayedOptions.thumbs = { swiper: useSwiper[delayedThumbClass], ...delayedOptions.thumbs }
+          const swiper = new Swiper(`.${delayedClass}`, delayedOptions)
+          useSwiper[delayedClass] = swiper
+          useOptions[delayedClass] = delayedOptions
+          delete useDelaySwiper[delayedClass]
+        }
+      })
     }
   }
 
