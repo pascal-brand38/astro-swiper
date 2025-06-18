@@ -43,17 +43,15 @@ const {
       const options = JSON.parse(this.dataset.options || '{}')
       const uniqueClass = this.dataset.uniqueclass || ''   // to have more than 1 swiper in a single page
       const linkToThumbUniqueClass = this.dataset.linktothumbuniqueclass || ''
-      // if (thumbOf !== '') {
-      //   options.thumbs = { swiper: useSwiper[thumbOf], ...options.thumbs }
-      //   console.log(options.thumbs)
-      //   console.log('Thumb is set to ')
-      //   console.log(useSwiper[thumbOf])
-      // }
 
       if (linkToThumbUniqueClass === '') {
+        // no thumbnail link - the swiper can be created immediatly
         const swiper = new Swiper(`.${uniqueClass}`, options)
         useSwiper[uniqueClass] = swiper
       } else {
+        // a thumbnail link is provided
+        // if the thumbnail swiper is already created, the main slider can be created also
+        // otherwise, it will be added in the delayed swiper list
         if (useSwiper[linkToThumbUniqueClass] !== undefined) {
           options.thumbs = { swiper: useSwiper[linkToThumbUniqueClass], ...options.thumbs }
           const swiper = new Swiper(`.${uniqueClass}`, options)
@@ -67,7 +65,7 @@ const {
 
       useOptions[uniqueClass] = options
 
-      // look if any delay swiper can be created
+      // look if any delayed swiper can be created, that is its related thumbnail swiper is now created
       Object.keys(useDelaySwiper).forEach(delayedClass => {
         const delayedThumbClass = useDelaySwiper[delayedClass]
         if (useSwiper[delayedThumbClass] !== undefined) {
