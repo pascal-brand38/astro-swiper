@@ -80,4 +80,10 @@ import { Swiper, SwiperWrapper, SwiperSlide } from "astro-swiper";
 ## Complex Examples
 
 Please check the [online doc](https://pascal-brand38.github.io/astro-dev/packages/astro-swiper) for a fullset of examples, including navigation and thumbnails.
+
 Full code is provided.
+
+
+# Support astro-swiper
+
+Please [star the project](https://github.com/pascal-brand38/astro-swiper) if you like it!
