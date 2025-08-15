@@ -25,20 +25,8 @@
   },
   "keywords": [
     "swiper",
-    "withastro",
-    "astro-component",
-    "carousel",
-    "swipe",
-    "swiper",
-    "slide",
-    "slider",
-    "slideshow",
-    "gallery",
-    "simple",
-    "lightweight",
-    "touch",
-    "responsive",
-    "thumbnail"
+    "withastro", "astro-component", "image",
+    "carousel", "swiper", "slider", "slideshow", "gallery", "lightweight", "touch", "responsive", "thumbnail"
   ],
   "dependencies": {
     "swiper": "^11.2.8"
