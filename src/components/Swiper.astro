@@ -33,11 +33,28 @@ const {
 
 <script>
   import Swiper from 'swiper/bundle'
-  import { useSwiper, useOptions, useDelaySwiper } from '../index'
+  import type { SwiperOptions } from 'swiper/types';
+
+  /** contains the swiper json object once created, for each uniqueClass */
+  const _useSwiper: { [uniqueClass: string] : Swiper; } = {};
+
+  /** contains the option used when creating the swiper object for each uniqueClass */
+  const _useOptions: { [uniqueClass: string] : SwiperOptions; } = {};
+
+  /** contains all the uniqueClass that have their swiper object delayed because the
+   * related thumbnail swiper is not created yet
+   * For each uniqueClass, is equal to the thumbnail slider uniqueClass
+   */
+  const _useDelaySwiper: { [uniqueClass: string] : string; } = {};
 
   class AstroSwiper extends HTMLElement {
+    /** pointer to the swiper structure that was created using "new",
+     *  even when not initialized */
+    astroSwiper: Swiper | undefined
+
     constructor() {
       super();
+      this.astroSwiper = undefined
 
       // Read the message from the data attribute.
       const options = JSON.parse(this.dataset.options || '{}')
@@ -47,34 +64,37 @@ const {
       if (linkToThumbUniqueClass === '') {
         // no thumbnail link - the swiper can be created immediatly
         const swiper = new Swiper(`.${uniqueClass}`, options)
-        useSwiper[uniqueClass] = swiper
+        _useSwiper[uniqueClass] = swiper
+        this.astroSwiper = swiper
       } else {
         // a thumbnail link is provided
         // if the thumbnail swiper is already created, the main slider can be created also
         // otherwise, it will be added in the delayed swiper list
-        if (useSwiper[linkToThumbUniqueClass] !== undefined) {
-          options.thumbs = { swiper: useSwiper[linkToThumbUniqueClass], ...options.thumbs }
+        if (_useSwiper[linkToThumbUniqueClass] !== undefined) {
+          options.thumbs = { swiper: _useSwiper[linkToThumbUniqueClass], ...options.thumbs }
           const swiper = new Swiper(`.${uniqueClass}`, options)
-          useSwiper[uniqueClass] = swiper
+          _useSwiper[uniqueClass] = swiper
+          this.astroSwiper = swiper
         } else {
           // cannot create the swiper as the thumbnail swiper not created yet
           // will be done later
-          useDelaySwiper[uniqueClass] = linkToThumbUniqueClass
+          _useDelaySwiper[uniqueClass] = linkToThumbUniqueClass
         }
       }
 
-      useOptions[uniqueClass] = options
+      _useOptions[uniqueClass] = options
 
       // look if any delayed swiper can be created, that is its related thumbnail swiper is now created
-      Object.keys(useDelaySwiper).forEach(delayedClass => {
-        const delayedThumbClass = useDelaySwiper[delayedClass]
-        if (useSwiper[delayedThumbClass] !== undefined) {
-          const delayedOptions = useOptions[delayedClass]
-          delayedOptions.thumbs = { swiper: useSwiper[delayedThumbClass], ...delayedOptions.thumbs }
+      Object.keys(_useDelaySwiper).forEach(delayedClass => {
+        const delayedThumbClass = _useDelaySwiper[delayedClass]
+        if (_useSwiper[delayedThumbClass] !== undefined) {
+          const delayedOptions = _useOptions[delayedClass]
+          delayedOptions.thumbs = { swiper: _useSwiper[delayedThumbClass], ...delayedOptions.thumbs }
           const swiper = new Swiper(`.${delayedClass}`, delayedOptions)
-          useSwiper[delayedClass] = swiper
-          useOptions[delayedClass] = delayedOptions
-          delete useDelaySwiper[delayedClass]
+          _useSwiper[delayedClass] = swiper;
+          (document.querySelector(`.${delayedClass}`) as AstroSwiper).astroSwiper = swiper
+          _useOptions[delayedClass] = delayedOptions
+          delete _useDelaySwiper[delayedClass]
         }
       })
     }

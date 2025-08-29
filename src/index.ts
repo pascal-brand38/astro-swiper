@@ -36,14 +36,12 @@ export { default as SwiperScrollbar } from './components/SwiperScrollbar.astro'
 export { default as SwiperSlide } from './components/SwiperSlide.astro'
 export { default as SwiperWrapper } from './components/SwiperWrapper.astro'
 
-/** contains the swiper json object once created, for each uniqueClass */
-export const useSwiper: { [uniqueClass: string] : Swiper; } = {};
+declare class AstroSwiper extends HTMLElement {
+  /** pointer to the swiper structure that was created using "new",
+   *  even when not initialized */
+  astroSwiper: Swiper | undefined
+}
 
-/** contains the option used when creating the swiper object for each uniqueClass */
-export const useOptions: { [uniqueClass: string] : SwiperOptions; } = {};
-
-/** contains all the uniqueClass that have their swiper object delayed because the
- * related thumbnail swiper is not created yet
- * For each uniqueClass, is equal to the thumbnail slider uniqueClass
- */
-export const useDelaySwiper: { [uniqueClass: string] : string; } = {};
+export function getSwiperFromUniqueClass(uniqueClass: string): Swiper | undefined {
+  return (document.querySelector(`.${uniqueClass}`) as AstroSwiper)?.astroSwiper
+}
