@@ -1,6 +1,6 @@
 {
   "name": "astro-swiper",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Astro component for swiper, dedicated to slider / carousel / photo swiper / slide, including thumbnails",
   "main": "index.js",
   "repository": {
