@@ -3,17 +3,15 @@
 // MIT License
 
 import 'swiper/css/bundle'
-
 import type { AstroSwiperType } from '../index'
 
 type Props = AstroSwiperType
 
-
 const {
   options={},
-  class: className = '',
-  uniqueClass = 'astro-swiper-' + Math.random().toString(36).slice(2, 11),
-  linkToThumbUniqueClass = '',
+  uniqueClass = `astro-swiper-${crypto.randomUUID()}`,
+  class: className = null,
+  linkToThumbUniqueClass = null,
   ...props
 } = Astro.props;
 
@@ -32,7 +30,7 @@ const {
 
 
 <script>
-  import Swiper from 'swiper/bundle'
+  import Swiper from 'swiper'
   import type { SwiperOptions } from 'swiper/types';
 
   /** contains the swiper json object once created, for each uniqueClass */

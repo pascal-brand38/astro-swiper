@@ -3,7 +3,6 @@
 // MIT License
 
 import 'swiper/css/bundle'
-
 import type { HTMLAttributes } from 'astro/types'
 
 interface Props extends HTMLAttributes<"div"> {
@@ -20,7 +19,7 @@ const {
 ---
 
 <div
-  class:list={[(addDefaultClass ? 'swiper-slide' : ''), className]}
+  class:list={[(addDefaultClass ? 'swiper-slide' : null), className]}
   {...props}>
     <slot/>
 </div>
