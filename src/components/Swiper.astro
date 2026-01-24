@@ -9,7 +9,7 @@ type Props = AstroSwiperType
 
 const {
   options={},
-  uniqueClass = `astro-swiper-${crypto.randomUUID()}`,
+  uniqueClass = `astro-swiper-${Math.random().toString(36).slice(2, 11)}`,
   class: className = null,
   linkToThumbUniqueClass = null,
   ...props
