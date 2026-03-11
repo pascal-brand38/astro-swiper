@@ -4,6 +4,32 @@
 import type { Swiper, SwiperOptions } from 'swiper/types';
 import type { HTMLAttributes } from 'astro/types';
 
+/** Swiper options for the Astro component.
+ * Basically the same as the original SwiperOptions, but extended
+ * with new capabilities
+*/
+export interface AstroSwiperOptions extends SwiperOptions {
+  /** options specific to astro-swiper component */
+  astro?: {
+    /** observer options: an observer can be added to control the swiper when it appears in the screen.
+     * The observer is created using IntersectionObserver
+     * The behavior of the observer is controlled by the following properties
+     * When observer is not provided, no observer is created.
+     */
+    observer?: {
+      /** true to initialize the swiper when the element appears in the screen */
+      init?: boolean;
+      /** true to disconnect the observer once the swiper is initialized */
+      disconnectOnInit?: boolean;
+      /** true to start and stop the autoplay when the swiper appears and disappears from the screen, respectively. */
+      autoplay?: boolean;
+      /** options for the IntersectionObserver */
+      options?: Omit<IntersectionObserver, 'disconnect' | 'observe' | 'takeRecords' | 'unobserve' >;
+    }
+    /** TODO: uniqueClass and linkToThumbUniqueClass may be part of it */
+  }
+};
+
 /** properties passed to the <Swiper> component
  * It extends a div (that is may have class, style,...), plus other attributes
  * Note that all other components (<SwiperSlide>, <SwiperButtonNext>...) extends a div only
@@ -12,7 +38,7 @@ export interface AstroSwiperType extends HTMLAttributes<'div'> {
   /** swiper options, to set autoplay, navigation, thumbnails,...
    * check fullset of options: https://swiperjs.com/swiper-api#parameters
    */
-  options?: SwiperOptions;
+  options?: AstroSwiperOptions;
 
   /** unique class to be able to retrieve the swiper instance, if required
    * Mandatory on thumbnail for example
