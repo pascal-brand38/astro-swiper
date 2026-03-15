@@ -107,14 +107,17 @@ const {
             }
           }
         }
+
+        const swiper = element?.astroSwiper
+        if (!swiper) {
+          return;
+        }
+
         if (observerOptions?.autoplay && options.autoplay) {
-          const swiper = element?.astroSwiper
-          if (swiper) {
-            if (entries[0].isIntersecting) {
-              swiper.autoplay.start();
-            } else {
-              swiper.autoplay.stop();
-            }
+          if (entries[0].isIntersecting) {
+            swiper.autoplay.start();
+          } else {
+            swiper.autoplay.stop();
           }
         }
       },
@@ -157,8 +160,8 @@ const {
 
       // no thumbnail link, or link to thumbnail swiper already created,
       // the swiper can be created or not immediatly depending on the observer option
-      if ((linkToThumbUniqueClass === '') || (_useSwiper[linkToThumbUniqueClass] !== undefined)) {
-        if (linkToThumbUniqueClass !== '') {
+      if (!linkToThumbUniqueClass || _useSwiper[linkToThumbUniqueClass]) {
+        if (linkToThumbUniqueClass) {
           options.thumbs = { swiper: _useSwiper[linkToThumbUniqueClass], ...options.thumbs };
         }
         // create the swiper and the observer if needed
