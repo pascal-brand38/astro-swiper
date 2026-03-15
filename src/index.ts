@@ -18,11 +18,11 @@ export interface AstroSwiperOptions extends SwiperOptions {
      */
     observer?: {
       /** true to initialize the swiper when the element appears in the screen */
-      init?: boolean;
+      initSwiper?: boolean;
       /** true to disconnect the observer once the swiper is initialized */
       disconnectOnInit?: boolean;
       /** true to start and stop the autoplay when the swiper appears and disappears from the screen, respectively. */
-      autoplay?: boolean;
+      controlAutoplay?: boolean;
       /** options for the IntersectionObserver */
       options?: Omit<IntersectionObserver, 'disconnect' | 'observe' | 'takeRecords' | 'unobserve' >;
     }
