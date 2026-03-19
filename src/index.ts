@@ -11,12 +11,12 @@ import type { HTMLAttributes } from 'astro/types';
 export interface AstroSwiperOptions extends SwiperOptions {
   /** options specific to astro-swiper component */
   astro?: {
-    /** observer options: an observer can be added to control the swiper when it appears in the screen.
+    /** intersection observer options: an observer can be added to control the swiper when it appears / disappears in the screen.
      * The observer is created using IntersectionObserver
      * The behavior of the observer is controlled by the following properties
      * When observer is not provided, no observer is created.
      */
-    observer?: {
+    intersectionObserver?: {
       /** true to initialize the swiper when the element appears in the screen */
       initSwiper?: boolean;
       /** true to disconnect the observer once the swiper is initialized */

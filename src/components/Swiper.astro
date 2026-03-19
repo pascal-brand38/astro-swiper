@@ -87,7 +87,7 @@ const {
     element.astroSwiper = swiper;
 
     // stop the autoplay if it will be started by the observer
-    if (options.astro?.observer?.controlAutoplay && options.autoplay) {
+    if (options.astro?.intersectionObserver?.controlAutoplay && options.autoplay) {
       swiper.autoplay.stop();
     }
 
@@ -96,7 +96,7 @@ const {
   }
 
   function _createObserver(uniqueClass: string, options: AstroSwiperOptions, element: AstroSwiper) {
-    const observerOptions = options.astro?.observer || {};
+    const observerOptions = options.astro?.intersectionObserver || {};
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
@@ -132,13 +132,13 @@ const {
   // - init the swiper if it should not be done by the observer
   // - create the observer if required
   function _createSwiperAndObserver(uniqueClass: string, options: AstroSwiperOptions, element: AstroSwiper) {
-    if (!(options.astro?.observer?.initSwiper)) {
+    if (!(options.astro?.intersectionObserver?.initSwiper)) {
       // create the swiper immediatly
       _initSwiper(uniqueClass, options, element);
     }
 
     // create the observer. It may init the swiper
-    if (options.astro?.observer) {
+    if (options.astro?.intersectionObserver) {
       _createObserver(uniqueClass, options, element);
     }
   }
