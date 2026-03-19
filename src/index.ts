@@ -24,7 +24,7 @@ export interface AstroSwiperOptions extends SwiperOptions {
       /** true to start and stop the autoplay when the swiper appears and disappears from the screen, respectively. */
       controlAutoplay?: boolean;
       /** options for the IntersectionObserver */
-      options?: Omit<IntersectionObserver, 'disconnect' | 'observe' | 'takeRecords' | 'unobserve' >;
+      options?: IntersectionObserverInit;
     }
     /** TODO: uniqueClass and linkToThumbUniqueClass may be part of it */
   }
