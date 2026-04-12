@@ -96,6 +96,7 @@ export function getSwiperFromUniqueClass(uniqueClass: string): Swiper | undefine
 
 /** Retrieve the swiper instance from the unique selector provided when creating the swiper
  * @param uniqueSelector the unique selector provided when creating the swiper,
+ * @param options mayBeUndefined set to true to avoid warning when the swiper is not initialized yet, but will be in the future (for example when using thumbnails, the main swiper is created before the thumbnail swiper, so it is normal that it is not found at this moment)
  * @example const swiper = getSwiperFromUniqueSelector('.my-unique-class')
  *          const swiper = getSwiperFromUniqueSelector('#my-unique-id')
  */

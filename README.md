@@ -31,9 +31,8 @@ import { Swiper, SwiperWrapper, SwiperSlide } from "astro-swiper";
 ---
 
 <Swiper
-// check options at https://swiperjs.com/swiper-api
   options={{
-    loop: true,
+    loop: true,   // check options at https://swiperjs.com/swiper-api
     autoplay: {
       delay: 700,
       disableOnInteraction: false,
@@ -103,6 +102,91 @@ You can also look at how others are using `astro-swiper` in public github repo:
   using `astro-swiper` in the hero section,
   [folex-lite-astro](https://github.com/getastrothemes/folex-lite-astro)
   using it in the portfolio page,...
+
+## API
+
+### `<Swiper/>`
+Main Swiper element. Inherits all `HTMLAttributes<'div'>` (class...) attributes.
+| Name | Type | Default | Description |
+| ---- | -----|-------- | -----------|
+| options | SwiperOptions | Swiperjs default | cf. [Swiperjs doc](https://swiperjs.com/swiper-api#parameters) |
+| options.astro.useCustomElement | boolean | true | when false, use a `<div>` to be as close as possible to swiperjs default. Use a custom element `<astro-swiper>` otherwise. |
+| options.astro.thumbSwiperUniqueSelector | string starting with `#` or `.` | undefined | unique selector of the thumbnail swiper to link with, when using the thumbs module. When a thumbnail swiper is build, this parameter is provided on the main slider (the one with big slides, not the one to track the progress) and equal the unique selector of the thumbnail swiper (the one to track the progress). It is used to link the main swiper with the thumbnail swiper when using the thumbs module. |
+| options.astro.intersectionObserver.initSwiper | boolean | false | true to initialize the swiper when the element appears in the screen |
+| options.astro.intersectionObserver.disconnectOnInit | boolean | false | true to disconnect the observer once the swiper is initialized |
+| options.astro.intersectionObserver.controlAutoplay | boolean | false | true to start and stop the autoplay when the swiper appears and disappears from the screen, respectively |
+| options.astro.intersectionObserver.options | IntersectionObserverInit | undefined | cf. [mdn docs](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) |
+| addDefaultClass | Boolean | true | Add class `.swiper` when true |
+
+### `<SwiperWrapper/>`
+Wrapper of all slides. Inherits all `HTMLAttributes<'div'>` (class...)  attributes.
+| Name | Type | Default | Description |
+| ---- | -----|-------- | -----------|
+| addDefaultClass | Boolean | true | Add class `.swiper-wrapper` when true |
+
+### `<SwiperSlide/>`
+A single slide. Inherits all `HTMLAttributes<'div'>` (class...) attributes.
+| Name | Type | Default | Description |
+| ---- | -----|-------- | -----------|
+| addDefaultClass | Boolean | true | Add class `.swiper-slide` when true |
+
+### `<SwiperPagination/>`
+Pagination dots. Inherits all `HTMLAttributes<'div'>` (class...) attributes.
+| Name | Type | Default | Description |
+| ---- | -----|-------- | -----------|
+| addDefaultClass | Boolean | true | Add class `.swiper-pagination` when true |
+
+### `<SwiperButtonPrev/>` and `<SwiperButtonNext/>`
+Navigation arrows. Inherits all `HTMLAttributes<'div'>` (class...) attributes.
+| Name | Type | Default | Description |
+| ---- | -----|-------- | -----------|
+| addDefaultClass | Boolean | true | Add class `.swiper-button-prev` or `swiper-button-next` when true |
+
+### `<SwiperScrollbar/>`
+Scrollbar. Inherits all `HTMLAttributes<'div'>` (class...) attributes.
+| Name | Type | Default | Description |
+| ---- | -----|-------- | -----------|
+| addDefaultClass | Boolean | true | Add class `.swiper-scrollbar` when true |
+
+### `<SwiperLazyPreloader/>`
+Slide lazy loader. To be used inside a `<SwiperSlide/>`. Inherits all `HTMLAttributes<'div'>` (class...) attributes.
+| Name | Type | Default | Description |
+| ---- | -----|-------- | -----------|
+| addDefaultClass | Boolean | true | Add class `.swiper-lazy-preloader` when true |
+
+### `getSwiperFromUniqueSelector()`
+Function to be used in script part, to be able to retrieve the swiper instance given
+a unique selector (starting with a `.` or a `#`), once the `load` event is fired.
+This allows to use functions and events in swiper.
+
+Here is a snipset of the
+[Custom Pagination Demo](https://github.com/pascal-brand38/astro-dev/blob/main/src/content/docs/packages/astro-swiper/DemoPaginationCustom.astro):
+
+```jsx
+<Swiper
+  class="swiper-demo-pagination-custom"
+  options={{
+    ...
+    init: false,  // init in the script part
+  }}
+>
+  ...
+  <SwiperPagination />
+</Swiper>
+
+<script>
+  import type { PaginationOptions } from 'swiper/types';
+  import { getSwiperFromUniqueSelector } from 'astro-swiper'
+  window.addEventListener('load', () => {
+    const swiper = getSwiperFromUniqueSelector('.swiper-demo-pagination-custom');
+    (swiper!.params.pagination as PaginationOptions)!.renderBullet = function (index: number, className: string) {
+      return '<span class="' + className + '">' + (index + 1) + "</span>";
+    }
+    swiper!.init()
+  })
+</script>
+```
+
 
 ## Help needed?
 
