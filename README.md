@@ -110,13 +110,18 @@ Main Swiper element. Inherits all `HTMLAttributes<'div'>` (class...) attributes.
 | Name | Type | Default | Description |
 | ---- | -----|-------- | -----------|
 | options | SwiperOptions | Swiperjs default | cf. [Swiperjs doc](https://swiperjs.com/swiper-api#parameters) |
-| options.astro.useCustomElement | boolean | true | when false, use a `<div>` to be as close as possible to swiperjs default. Use a custom element `<astro-swiper>` otherwise. |
-| options.astro.thumbSwiperUniqueSelector | string starting with `#` or `.` | undefined | unique selector of the thumbnail swiper to link with, when using the thumbs module. When a thumbnail swiper is build, this parameter is provided on the main slider (the one with big slides, not the one to track the progress) and equal the unique selector of the thumbnail swiper (the one to track the progress). It is used to link the main swiper with the thumbnail swiper when using the thumbs module. |
-| options.astro.intersectionObserver.initSwiper | boolean | false | true to initialize the swiper when the element appears in the screen |
-| options.astro.intersectionObserver.disconnectOnInit | boolean | false | true to disconnect the observer once the swiper is initialized |
-| options.astro.intersectionObserver.controlAutoplay | boolean | false | true to start and stop the autoplay when the swiper appears and disappears from the screen, respectively |
-| options.astro.intersectionObserver.options | IntersectionObserverInit | undefined | cf. [mdn docs](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) |
+| options.astro | Cf. below description | undefined | astro specific options |
 | addDefaultClass | Boolean | true | Add class `.swiper` when true |
+
+`options.astro` is as follows:
+| Name | Type | Default | Description |
+| ---- | -----|-------- | -----------|
+| useCustomElement | boolean | true | when false, use a `<div>` to be as close as possible to swiperjs default. Use a custom element `<astro-swiper>` otherwise. |
+| thumbSwiperUniqueSelector | string starting with `#` or `.` | undefined | unique selector of the thumbnail swiper to link with, when using the thumbs module. When a thumbnail swiper is build, this parameter is provided on the main slider (the one with big slides, not the one to track the progress) and equal the unique selector of the thumbnail swiper (the one to track the progress). It is used to link the main swiper with the thumbnail swiper when using the thumbs module. |
+| intersectionObserver.initSwiper | boolean | false | true to initialize the swiper when the element appears in the screen |
+| intersectionObserver.disconnectOnInit | boolean | false | true to disconnect the observer once the swiper is initialized |
+| intersectionObserver.controlAutoplay | boolean | false | true to start and stop the autoplay when the swiper appears and disappears from the screen, respectively |
+| intersectionObserver.options | IntersectionObserverInit | undefined | cf. [mdn docs](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) |
 
 ### `<SwiperWrapper/>`
 Wrapper of all slides. Inherits all `HTMLAttributes<'div'>` (class...)  attributes.
