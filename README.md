@@ -118,10 +118,10 @@ Main Swiper element. Inherits all `HTMLAttributes<'div'>` (class...) attributes.
 | ---- | -----|-------- | -----------|
 | useCustomElement | boolean | true | when false, use a `<div>` to be as close as possible to swiperjs default. Use a custom element `<astro-swiper>` otherwise. |
 | thumbSwiperUniqueSelector | string starting with `#` or `.` | undefined | unique selector of the thumbnail swiper to link with, when using the thumbs module. When a thumbnail swiper is build, this parameter is provided on the main slider (the one with big slides, not the one to track the progress) and equal the unique selector of the thumbnail swiper (the one to track the progress). It is used to link the main swiper with the thumbnail swiper when using the thumbs module. |
-| intersectionObserver.initSwiper | boolean | false | true to initialize the swiper when the element appears in the screen |
-| intersectionObserver.disconnectOnInit | boolean | false | true to disconnect the observer once the swiper is initialized |
-| intersectionObserver.controlAutoplay | boolean | false | true to start and stop the autoplay when the swiper appears and disappears from the screen, respectively |
-| intersectionObserver.options | IntersectionObserverInit | undefined | cf. [mdn docs](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) |
+| intersectionObserver<br>.initSwiper | boolean | false | true to initialize the swiper when the element appears in the screen |
+| intersectionObserver<br>.disconnectOnInit | boolean | false | true to disconnect the observer once the swiper is initialized |
+| intersectionObserver<br>.controlAutoplay | boolean | false | true to start and stop the autoplay when the swiper appears and disappears from the screen, respectively |
+| intersectionObserver<br>.options | [Intersection Observer Init options](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) | undefined | cf. [mdn docs](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) |
 
 ### `<SwiperWrapper/>`
 Wrapper of all slides. Inherits all `HTMLAttributes<'div'>` (class...)  attributes.
