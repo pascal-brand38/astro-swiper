@@ -180,7 +180,7 @@ Here is a snipset of the
 </Swiper>
 
 <script>
-  import type { PaginationOptions } from 'swiper/types';
+  import type { PaginationOptions } from 'astro-swiper/swiper';
   import { getSwiperFromUniqueSelector } from 'astro-swiper'
   window.addEventListener('load', () => {
     const swiper = getSwiperFromUniqueSelector('.swiper-demo-pagination-custom');
@@ -192,6 +192,13 @@ Here is a snipset of the
 </script>
 ```
 
+### Swiper types
+
+Swiper types are available importing types from `astro-swiper/swiper`, such as
+
+```js
+import type { PaginationOptions } from 'astro-swiper/swiper';
+```
 
 ## Help needed?
 
