@@ -61,6 +61,6 @@
     "thumbnail"
   ],
   "dependencies": {
-    "swiper": "^12.1.3"
+    "swiper": "^12.1.4"
   }
 }
