@@ -220,5 +220,5 @@ if (options?.astro?.thumbSwiperUniqueSelector === undefined && Astro.props.linkT
     }
   }
 
-  customElements.define('astro-swiper', AstroSwiper);
+  customElements.get('astro-swiper') || customElements.define('astro-swiper', AstroSwiper);
 </script>
