@@ -81,10 +81,10 @@ if (options?.astro?.thumbSwiperUniqueSelector === undefined && Astro.props.linkT
   // Init swipers that have delayed initialization because the thumbnail swiper is not created yet
   // If this is now the case, then it is intialized, as well as its observer if needed
   function _initDelayedSwipers() {
-    Object.keys(_useDelaySwiper).forEach((delayedSelector) => {
+    Object.keys(_useDelaySwiper).forEach((delayedSelector: string) => {
       // swiper of uniqueSelector "delayedSelector" is delayed because it needs the swiper of uniqueSelector
       // "delayedThumbSelector" to be created first
-      const delayedThumbSelector = _useDelaySwiper[delayedSelector];
+      const delayedThumbSelector: selectorStringType = _useDelaySwiper[delayedSelector] as selectorStringType;
       const swiper = getSwiperFromUniqueSelector(
         delayedThumbSelector,
         getSwiperFromUniqueSelectorOptions,
@@ -99,7 +99,7 @@ if (options?.astro?.thumbSwiperUniqueSelector === undefined && Astro.props.linkT
         };
 
         _createSwiperAndObserver(
-          delayedSelector,
+          delayedSelector as selectorStringType,
           delayedOptions,
           document.querySelector(delayedSelector) as AstroSwiper,
         );
@@ -192,7 +192,7 @@ if (options?.astro?.thumbSwiperUniqueSelector === undefined && Astro.props.linkT
       const options: AstroSwiperOptions = JSON.parse(this.dataset.options || '{}');
       // to have more than 1 swiper in a single page
       const uniqueSelector: selectorStringType = `.${this.dataset.uniqueclass}`;
-      const thumbSwiperUniqueSelector = options.astro?.thumbSwiperUniqueSelector;
+      const thumbSwiperUniqueSelector: selectorStringType = options.astro?.thumbSwiperUniqueSelector as selectorStringType;
 
       // no thumbnail link, or link to thumbnail swiper already created,
       // the swiper can be created or not immediatly depending on the observer option
