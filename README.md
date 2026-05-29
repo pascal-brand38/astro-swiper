@@ -1,6 +1,6 @@
 <div align="center" style="background-color: dark-grey; padding: 1rem;">
   <a href="https://swiperjs.com" target="_blank"><img width="70" width="auto" src="images/swiper-logo.svg"></a>
-  <a href="https://astro.build/" target="_blank"><img height="68" width="auto" src="images/astro-logo.svg"></a>
+  <a href="https://astro.build/" target="_blank"><img height="68" width="auto" src="images/astro-logo.png"></a>
 
   # Astro Swiper
 
