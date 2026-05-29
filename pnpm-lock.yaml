@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       swiper:
-        specifier: ^12.1.4
-        version: 12.1.4
+        specifier: ^12.2.0
+        version: 12.2.0
     devDependencies:
       '@biomejs/biome':
         specifier: ^2.4.9
@@ -1518,8 +1518,8 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
-  swiper@12.1.4:
-    resolution: {integrity: sha512-bihiwoKMOQwW8FfdUbo1DgkVH25E+4ZELIq0oopL1KTKBteLuaTMi/wwFjMxtlhTkk45k3XQ89D1Fvv0spSqBA==}
+  swiper@12.2.0:
+    resolution: {integrity: sha512-K8uXsBZU6ME97Ia3xbBge8IRCnR1lOmIILzvY/jGVic7dSTQ530s3uO8RvXbPUtkkXLWIwmZLRPbtDxRWVAFdg==}
     engines: {node: '>= 4.7.0'}
 
   tiny-inflate@1.0.3:
@@ -3431,7 +3431,7 @@ snapshots:
       picocolors: 1.1.1
       sax: 1.6.0
 
-  swiper@12.1.4: {}
+  swiper@12.2.0: {}
 
   tiny-inflate@1.0.3: {}
 
