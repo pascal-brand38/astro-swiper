@@ -200,6 +200,27 @@ Swiper types are available importing types from `astro-swiper/swiper`, such as
 import type { PaginationOptions } from 'astro-swiper/swiper';
 ```
 
+## Troubleshooting
+
+### Import declaration conflict
+
+On the following code,
+```jsx
+import { Swiper } from 'astro-swiper';
+```
+VSCode may raise the following error:
+```jsx
+Import declaration conflicts with local declaration of 'Swiper'.
+(alias) function Swiper(_props: AstroSwiperType): any
+import Swiper
+function Swiper(_props: Record<string, any>): any
+```
+
+This is because the astro file is named `Swiper.astro`.
+Renaming it in `MySwiper.astro` solves teh issue.
+
+
+
 ## Help needed?
 
 **Do you need help to integrate `astro-swiper` in your astro template / component?**
