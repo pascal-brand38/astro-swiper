@@ -217,7 +217,7 @@ function Swiper(_props: Record<string, any>): any
 ```
 
 This is because the astro file is named `Swiper.astro`.
-Renaming it in `MySwiper.astro` solves teh issue.
+Renaming it in `MySwiper.astro` solves the issue.
 
 
 
