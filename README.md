@@ -220,6 +220,17 @@ This is because the astro file is named `Swiper.astro`.
 Renaming it in `MySwiper.astro` solves the issue.
 
 
+### Wrong AI code
+
+AI (chatgpt, gemini...) get confused when providing examples how to use `astro-swiper`.
+Common errors are:
+* missing `<SwiperWrapper>`
+* `<SwiperWrapper>` wrapping `<Swiper>` instead of `<SwiperSlide>`
+* options provided directly to `<Swiper>` instead of inside `options` variable, such as `<Swiper options={{...}}>`
+* adding `modules` in `options`. This is wrong. Modules are automatically added
+* installing `swiper` is not required
+* `import 'swiper/css';` is not required as performed by `astro-swiper`
+
 
 ## Help needed?
 
