@@ -11,7 +11,7 @@ export type selectorStringType = `.${string}` | `#${string}`;
  * Basically the same as the original SwiperOptions, but extended
  * with new capabilities
  */
-export interface AstroSwiperOptions extends SwiperOptions {
+export interface AstroSwiperOptions extends Omit<SwiperOptions, "modules"> {
   /** options specific to astro-swiper component */
   astro?: {
     /** intersection observer options: an observer can be added to control the swiper when it appears / disappears in the screen.
