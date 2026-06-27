@@ -62,8 +62,7 @@ export interface AstroSwiperType extends HTMLAttributes<'div'> {
   /** add the default swiper class, true by default */
   addDefaultClass?: boolean;
 
-  /** @deprecated is not really usefull anymore. If a specific unique class or id is needed,
-   * add it as an id or or a class directly */
+  /** @deprecated is not really usefull anymore. If a specific unique class or id is needed add it as an id or or a class directly */
   uniqueClass?: string;
 
   /** @deprecated use astro.options.astro.thumbsSwiperUniqueSelector instead */
