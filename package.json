@@ -1,0 +1,21 @@
+{
+  "name": "astro-swiper monorepo",
+
+  "engines": {
+    "node": ">=18",
+    "npm": ">=9.6.5",
+    "pnpm": ">=7.1.0"
+  },
+  "packageManager": "pnpm@10.30.3",
+
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pascal-brand38/astro-swiper.git"
+  },
+  "author": "Pascal Brand",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pascal-brand38/astro-swiper/issues"
+  },
+  "homepage": "https://pascal-brand38.github.io/astro-dev/packages/astro-swiper/",
+}

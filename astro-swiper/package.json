@@ -11,7 +11,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pascal-brand38/astro-swiper.git"
+    "url": "git+https://github.com/pascal-brand38/astro-swiper.git",
+    "directory": "astro-swiper"
   },
   "author": "Pascal Brand",
   "license": "MIT",
