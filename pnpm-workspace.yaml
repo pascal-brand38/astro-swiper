@@ -1,3 +1,6 @@
+packages:
+  - astro-swiper
+
 onlyBuiltDependencies:
   - esbuild
   - sharp
