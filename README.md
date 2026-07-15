@@ -40,3 +40,12 @@ npm login
 npm publish
 # And then create a release in github
 ```
+
+## Demo
+
+Demo website using astro-swiper can be found in `demo`. In order to see it:
+
+```bash
+cd demo
+pnpm run dev
+```
