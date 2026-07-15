@@ -12,21 +12,24 @@ Note that the doc is not part of this monorepo (yet?), but is part of
 
 ## Installation
 
-```pnpm install```
+```pnpm install``` installs all repo in this monorepo.
+
 
 
 ## npm package
 
-In order to develop and publish the [astro-swiper npm package], please
+In order to develop and publish the [astro-swiper npm package](https://www.npmjs.com/package/astro-swiper), please
 
-```cd astro-swiper```
+```bash
+cd astro-swiper
+```
 
 Then commands are:
 
 * `npm run lint`
 * `npm run format`
 
-To publish on npm,
+To publish a new version on npm,
 
 ```bash
 # update package.json and pnpm-lock.yaml, commit and create a tag
