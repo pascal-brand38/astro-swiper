@@ -13,6 +13,7 @@
     "install-swipers": "cp ../../astro-dev/src/content/docs/packages/astro-swiper/*.astro src/swiper-components"
   },
   "dependencies": {
-    "astro": "^7.0.9"
+    "astro": "^7.0.9",
+    "astro-swiper": "link:..\\astro-swiper"
   }
 }
