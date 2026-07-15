@@ -1,0 +1,40 @@
+---
+// Copyright (c) Pascal Brand
+// MIT License
+//
+
+import { Swiper, SwiperWrapper, SwiperSlide, SwiperButtonPrev, SwiperButtonNext, SwiperPagination } from "astro-swiper";
+import './slide-demo.css' // .slide-demo definition: colors, aspect-ratio, sizes,...
+import DemoFirstSlide from "./DemoFirstSlide.astro";
+
+const title='Effect Fade'
+---
+
+<Swiper
+  class="my-swiper"
+  options={{
+    spaceBetween: 30,
+    effect: "fade",
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+  }}
+>
+  <SwiperWrapper>
+    <SwiperSlide class="slide-demo"> <DemoFirstSlide title={title}/> </SwiperSlide>
+    <SwiperSlide class="slide-demo"> <img src="/astro-dev/astro-swiper.png" alt="" /> </SwiperSlide>
+    <SwiperSlide class="slide-demo"> <img src="https://swiperjs.com/demos/images/nature-1.jpg" /> </SwiperSlide>
+    <SwiperSlide class="slide-demo"> <img src="https://swiperjs.com/demos/images/nature-2.jpg" /> </SwiperSlide>
+    <SwiperSlide class="slide-demo"> <img src="https://swiperjs.com/demos/images/nature-3.jpg" /> </SwiperSlide>
+    <SwiperSlide class="slide-demo"> <img src="https://swiperjs.com/demos/images/nature-4.jpg" /> </SwiperSlide>
+  </SwiperWrapper>
+
+  <SwiperButtonPrev />
+  <SwiperButtonNext />
+  <SwiperPagination />
+</Swiper>

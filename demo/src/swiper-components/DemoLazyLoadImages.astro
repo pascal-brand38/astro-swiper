@@ -1,0 +1,50 @@
+---
+// Copyright (c) Pascal Brand
+// MIT License
+//
+
+import { Swiper, SwiperWrapper, SwiperSlide, SwiperButtonPrev, SwiperButtonNext, SwiperPagination, SwiperLazyPreloader } from "astro-swiper";
+import './slide-demo.css' // .slide-demo definition: colors, aspect-ratio, sizes,...
+import DemoFirstSlide from "./DemoFirstSlide.astro";
+
+const title='Lazy Load Images'
+---
+
+<Swiper
+  class="my-swiper"
+  options={{
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  }}
+>
+  <SwiperWrapper>
+    <SwiperSlide class="slide-demo"> <DemoFirstSlide title={title}/> </SwiperSlide>
+    <SwiperSlide class="slide-demo"> <img src="/astro-dev/astro-swiper.png" alt="" /> </SwiperSlide>
+    <SwiperSlide class="slide-demo">
+      <img src="https://swiperjs.com/demos/images/nature-5.jpg" loading="lazy" />
+      <SwiperLazyPreloader class="swiper-lazy-preloader-white"></SwiperLazyPreloader>
+    </SwiperSlide>
+    <SwiperSlide class="slide-demo">
+      <img src="https://swiperjs.com/demos/images/nature-6.jpg" loading="lazy" />
+      <SwiperLazyPreloader class="swiper-lazy-preloader-white"></SwiperLazyPreloader>
+    </SwiperSlide>
+    <SwiperSlide class="slide-demo">
+      <img src="https://swiperjs.com/demos/images/nature-7.jpg" loading="lazy" />
+      <SwiperLazyPreloader class="swiper-lazy-preloader-white"></SwiperLazyPreloader>
+    </SwiperSlide>
+    <SwiperSlide class="slide-demo">
+      <img src="https://swiperjs.com/demos/images/nature-8.jpg" loading="lazy" />
+      <SwiperLazyPreloader class="swiper-lazy-preloader-white"></SwiperLazyPreloader>
+    </SwiperSlide>
+  </SwiperWrapper>
+
+  <SwiperButtonPrev />
+  <SwiperButtonNext />
+  <SwiperPagination />
+</Swiper>

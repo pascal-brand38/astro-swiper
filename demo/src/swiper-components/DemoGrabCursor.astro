@@ -1,0 +1,41 @@
+---
+// Copyright (c) Pascal Brand
+// MIT License
+//
+
+import { Swiper, SwiperWrapper, SwiperSlide, SwiperPagination } from "astro-swiper";
+import './slide-demo.css' // .slide-demo definition: colors, aspect-ratio, sizes,...
+import DemoFirstSlide from "./DemoFirstSlide.astro";
+import DemoVertical from "./DemoVertical.astro";
+
+const title="Grab Cursor"
+
+---
+
+<Swiper
+  class="my-swiper"
+  options={{
+    slidesPerView: 4,
+    centeredSlides: true,
+    spaceBetween: 30,
+    grabCursor: true,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+  }}
+>
+  <SwiperWrapper>
+    <SwiperSlide class="slide-demo"> <DemoFirstSlide title={title}/> </SwiperSlide>
+    <SwiperSlide class="slide-demo"> <img src="/astro-dev/astro-swiper.png" alt="" /> </SwiperSlide>
+    <SwiperSlide class="slide-demo"> <DemoVertical/> </SwiperSlide>
+    <SwiperSlide class="slide-demo"> Slide 4 </SwiperSlide>
+    <SwiperSlide class="slide-demo"> Slide 5 </SwiperSlide>
+    <SwiperSlide class="slide-demo"> Slide 6 </SwiperSlide>
+    <SwiperSlide class="slide-demo"> Slide 7 </SwiperSlide>
+    <SwiperSlide class="slide-demo"> Slide 8 </SwiperSlide>
+    <SwiperSlide class="slide-demo"> Slide 9 </SwiperSlide>
+  </SwiperWrapper>
+
+  <SwiperPagination />
+</Swiper>

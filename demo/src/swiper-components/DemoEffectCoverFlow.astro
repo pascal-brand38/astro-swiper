@@ -1,0 +1,59 @@
+---
+// Copyright (c) Pascal Brand
+// MIT License
+//
+
+import { Swiper, SwiperWrapper, SwiperSlide, SwiperPagination } from "astro-swiper";
+import './slide-demo.css' // .slide-demo definition: colors, aspect-ratio, sizes,...
+import DemoFirstSlide from "./DemoFirstSlide.astro";
+
+const title='Effect Cover Flow'
+---
+
+<Swiper
+  uniqueClass="my-swiper-demoeffectcoverflow"
+  options={{
+    effect: "coverflow",
+    grabCursor: true,
+    centeredSlides: true,
+    slidesPerView: "auto",
+    coverflowEffect: {
+      rotate: 50,
+      stretch: 0,
+      depth: 100,
+      modifier: 1,
+      slideShadows: true,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+    },
+  }}
+>
+  <SwiperWrapper>
+    <SwiperSlide class="slide-demo slide-this-demo"> <DemoFirstSlide title={title}/> </SwiperSlide>
+    <SwiperSlide class="slide-demo slide-this-demo"> <img src="/astro-dev/astro-swiper.png" alt="" /> </SwiperSlide>
+    <SwiperSlide class="slide-demo slide-this-demo"> <img src="https://swiperjs.com/demos/images/nature-1.jpg" /> </SwiperSlide>
+    <SwiperSlide class="slide-demo slide-this-demo"> <img src="https://swiperjs.com/demos/images/nature-2.jpg" /> </SwiperSlide>
+    <SwiperSlide class="slide-demo slide-this-demo"> <img src="https://swiperjs.com/demos/images/nature-3.jpg" /> </SwiperSlide>
+    <SwiperSlide class="slide-demo slide-this-demo"> <img src="https://swiperjs.com/demos/images/nature-4.jpg" /> </SwiperSlide>
+  </SwiperWrapper>
+
+  <SwiperPagination />
+</Swiper>
+
+<style>
+.slide-this-demo {
+  width: 75%;
+  aspect-ratio: 16/9;
+  max-height: 200px;
+}
+
+.slide-this-demo img {
+  /* useful when an image is in the slide */
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+</style>

@@ -1,0 +1,71 @@
+---
+// Copyright (c) Pascal Brand
+// MIT License
+//
+
+import { Swiper, SwiperWrapper, SwiperSlide, SwiperPagination } from "astro-swiper";
+import './slide-demo.css' // .slide-demo definition: colors, aspect-ratio, sizes,...
+import DemoFirstSlide from "./DemoFirstSlide.astro";
+
+const title="Pagination Custom"
+
+---
+
+<Swiper
+  class="my-swiper"
+  uniqueClass="swiper-demo-pagination-custom"
+  options={{
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+      // renderBullet is a function, initialized in the script part
+    },
+    // initialization will be performed manually in the script part,
+    // once renderBullet is defined
+    init: false,
+  }}
+>
+  <SwiperWrapper>
+    <SwiperSlide class="slide-demo"> <DemoFirstSlide title={title}/> </SwiperSlide>
+    <SwiperSlide class="slide-demo"> <img src="/astro-dev/astro-swiper.png" alt="" /> </SwiperSlide>
+    <SwiperSlide class="slide-demo"> Slide 3 </SwiperSlide>
+    <SwiperSlide class="slide-demo"> Slide 4 </SwiperSlide>
+    <SwiperSlide class="slide-demo"> Slide 5 </SwiperSlide>
+    <SwiperSlide class="slide-demo"> Slide 6 </SwiperSlide>
+    <SwiperSlide class="slide-demo"> Slide 7 </SwiperSlide>
+    <SwiperSlide class="slide-demo"> Slide 8 </SwiperSlide>
+    <SwiperSlide class="slide-demo"> Slide 9 </SwiperSlide>
+  </SwiperWrapper>
+
+  <SwiperPagination />
+</Swiper>
+
+<script>
+  import type { PaginationOptions } from 'astro-swiper/swiper';
+  import { getSwiperFromUniqueSelector } from 'astro-swiper'
+  window.addEventListener('load', () => {
+    const swiper = getSwiperFromUniqueSelector('.swiper-demo-pagination-custom');
+    (swiper!.params.pagination as PaginationOptions)!.renderBullet = function (index: number, className: string) {
+      return '<span class="' + className + '">' + (index + 1) + "</span>";
+    }
+    swiper!.init()
+  })
+</script>
+
+<style is:global>
+  .swiper-demo-pagination-custom  .swiper-pagination-bullet {
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    font-size: 12px;
+    color: #000;
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  .swiper-demo-pagination-custom .swiper-pagination-bullet-active {
+    color: #fff;
+    background: #007aff;
+  }
+</style>

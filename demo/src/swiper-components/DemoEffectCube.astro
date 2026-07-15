@@ -1,0 +1,39 @@
+---
+// Copyright (c) Pascal Brand
+// MIT License
+//
+
+import { Swiper, SwiperWrapper, SwiperSlide, SwiperPagination } from "astro-swiper";
+import './slide-demo.css' // .slide-demo definition: colors, aspect-ratio, sizes,...
+import DemoFirstSlide from "./DemoFirstSlide.astro";
+
+const title='Effect Cube'
+---
+
+<Swiper
+  class="my-swiper"
+  options={{
+    effect: "cube",
+    grabCursor: true,
+    cubeEffect: {
+      shadow: true,
+      slideShadows: true,
+      shadowOffset: 20,
+      shadowScale: 0.94,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+    },
+  }}
+>
+  <SwiperWrapper>
+    <SwiperSlide class="slide-demo"> <DemoFirstSlide title={title}/> </SwiperSlide>
+    <SwiperSlide class="slide-demo"> <img src="/astro-dev/astro-swiper.png" alt="" /> </SwiperSlide>
+    <SwiperSlide class="slide-demo"> <img src="https://swiperjs.com/demos/images/nature-1.jpg" /> </SwiperSlide>
+    <SwiperSlide class="slide-demo"> <img src="https://swiperjs.com/demos/images/nature-2.jpg" /> </SwiperSlide>
+    <SwiperSlide class="slide-demo"> <img src="https://swiperjs.com/demos/images/nature-3.jpg" /> </SwiperSlide>
+    <SwiperSlide class="slide-demo"> <img src="https://swiperjs.com/demos/images/nature-4.jpg" /> </SwiperSlide>
+  </SwiperWrapper>
+
+  <SwiperPagination />
+</Swiper>

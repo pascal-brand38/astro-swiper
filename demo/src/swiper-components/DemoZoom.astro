@@ -1,0 +1,66 @@
+---
+// Copyright (c) Pascal Brand
+// MIT License
+//
+
+import { Swiper, SwiperWrapper, SwiperSlide, SwiperButtonPrev, SwiperButtonNext, SwiperPagination } from "astro-swiper";
+import './slide-demo.css' // .slide-demo definition: colors, aspect-ratio, sizes,...
+import DemoFirstSlide from "./DemoFirstSlide.astro";
+
+const title='Zoom'
+---
+
+<Swiper
+  class="my-swiper"
+  options={{
+    zoom: true,
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+  }}
+>
+  <SwiperWrapper>
+    <SwiperSlide class="slide-demo">
+      <DemoFirstSlide title={title}> Double-click on the image to zoom in </DemoFirstSlide>
+    </SwiperSlide>
+    <SwiperSlide class="slide-demo">
+        <div class="swiper-zoom-container">
+          <img src="/astro-dev/astro-swiper.png" alt="" />
+        </div>
+    </SwiperSlide>
+    <SwiperSlide class="slide-demo">
+      <div class="swiper-zoom-container">
+        <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
+      </div>
+    </SwiperSlide>
+    <SwiperSlide class="slide-demo">
+      <div class="swiper-zoom-container">
+        <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
+      </div>
+    </SwiperSlide>
+    <SwiperSlide class="slide-demo">
+      <div class="swiper-zoom-container">
+        <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
+      </div>
+    </SwiperSlide>
+    <SwiperSlide class="slide-demo">
+      <div class="swiper-zoom-container">
+        <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
+      </div>
+    </SwiperSlide>
+    <SwiperSlide class="slide-demo">
+      <div class="swiper-zoom-container">
+        <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
+      </div>
+    </SwiperSlide>
+  </SwiperWrapper>
+
+  <SwiperButtonPrev />
+  <SwiperButtonNext />
+  <SwiperPagination />
+</Swiper>

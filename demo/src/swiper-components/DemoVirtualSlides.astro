@@ -1,0 +1,133 @@
+---
+// Copyright (c) Pascal Brand
+// MIT License
+//
+
+import { Swiper, SwiperWrapper, SwiperSlide, SwiperButtonPrev, SwiperButtonNext, SwiperPagination } from "astro-swiper";
+import './slide-demo.css' // .slide-demo definition: colors, aspect-ratio, sizes,...
+import DemoFirstSlide from "./DemoFirstSlide.astro";
+
+const title='Virtual Slides'
+---
+
+<Swiper
+  id="swiper-vitual-slides"
+  class="my-swiper"
+  options={{
+    centeredSlides: true,
+    spaceBetween: 30,
+    pagination: {
+      el: '.swiper-pagination',
+      type: 'fraction',
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    // slides will be added in the script part
+    virtual: {
+      enabled: true,
+    },
+    astro: {
+      useCustomElement: true, // testing purpose only - not necessary
+    },
+  }}
+>
+  <SwiperWrapper>
+    <SwiperSlide class="slide-demo"> <DemoFirstSlide title={title}/> </SwiperSlide>
+    <SwiperSlide class="slide-demo"> <img src="/astro-dev/astro-swiper.png" alt="" /> </SwiperSlide>
+  </SwiperWrapper>
+
+  <SwiperButtonPrev />
+  <SwiperButtonNext />
+  <SwiperPagination style="color: white;"/>
+</Swiper>
+
+<p class="append-buttons">
+  <a href="#" class="vitual-prepend-2-slides">Prepend 2 Slides</a>
+  <a href="#" class="vitual-slide-1">Slide 1</a>
+  <a href="#" class="vitual-slide-250">Slide 250</a>
+  <a href="#" class="vitual-slide-500">Slide 500</a>
+  <a href="#" class="vitual-append-slide">Append Slide</a>
+</p>
+
+<script>
+import { getSwiperFromUniqueSelector } from 'astro-swiper'
+
+function createVirtualSlides() {
+  const slides = [];
+  for (var i = 0; i < 600; i += 1) {
+    slides.push('<div class="swiper-slide slide-demo"> Slide ' + (i+3) + ' </div>');
+  }
+  return slides;
+}
+
+window.addEventListener('load', () => {
+  const swiper = getSwiperFromUniqueSelector('#swiper-vitual-slides');
+  if (!swiper) {
+    console.error('Swiper instance not found');
+    return;
+  }
+  swiper.virtual.appendSlide(createVirtualSlides());
+
+  var appendNumber = 4;
+  var prependNumber = 1;
+
+  document
+    .querySelector('.vitual-slide-1')!
+    .addEventListener('click', function (e) {
+      e.preventDefault();
+      swiper.slideTo(0, 0);
+    });
+
+  document
+    .querySelector('.vitual-slide-250')!
+    .addEventListener('click', function (e) {
+      e.preventDefault();
+      swiper.slideTo(249, 0);
+    });
+
+  document
+    .querySelector('.vitual-slide-500')!
+    .addEventListener('click', function (e) {
+      e.preventDefault();
+      swiper.slideTo(499, 0);
+    });
+
+  document
+    .querySelector('.vitual-prepend-2-slides')!
+    .addEventListener('click', function (e) {
+      e.preventDefault();
+      swiper.virtual.prependSlide([
+        '<div class="swiper-slide slide-demo"> Slide ' + --prependNumber + ' </div>',
+        '<div class="swiper-slide slide-demo"> Slide ' + --prependNumber + ' </div>'
+      ]);
+    });
+
+  document
+    .querySelector('.vitual-append-slide')!
+    .addEventListener('click', function (e) {
+      e.preventDefault();
+        swiper.virtual.appendSlide('<div class="swiper-slide slide-demo"> Slide ' + ++appendNumber + ' </div>');
+    });
+  });
+</script>
+
+<style>
+.append-buttons {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.append-buttons a {
+  display: inline-block;
+  cursor: pointer;
+  border: 1px solid #007aff;
+  color: #007aff;
+  text-decoration: none;
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin: 0 10px;
+  font-size: 13px;
+}
+</style>

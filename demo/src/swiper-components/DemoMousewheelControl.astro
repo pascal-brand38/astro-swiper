@@ -1,0 +1,43 @@
+---
+// Copyright (c) Pascal Brand
+// MIT License
+//
+
+import { Swiper, SwiperWrapper, SwiperSlide, SwiperPagination } from "astro-swiper";
+import './slide-demo.css' // .slide-demo definition: colors, aspect-ratio, sizes,...
+import DemoFirstSlide from "./DemoFirstSlide.astro";
+
+const title='Mousewheel Control'
+---
+
+<Swiper
+  class="my-swiper"
+  options={{
+    direction: "vertical",
+    slidesPerView: "auto",
+    spaceBetween: 30,
+    mousewheel: true,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+
+    // fix issue with swiper: https://stackoverflow.com/questions/65032015/setting-the-correct-height-in-vertical-mode-in-swiper/79046857#79046857
+    autoHeight: true,
+    // slidesPerView: 'auto',
+  }}
+>
+  <SwiperWrapper>
+    <SwiperSlide class="slide-demo"> <DemoFirstSlide title={title}/> </SwiperSlide>
+    <SwiperSlide class="slide-demo"> <img src="/astro-dev/astro-swiper.png" alt="" /> </SwiperSlide>
+    <SwiperSlide class="slide-demo"> Slide 3 </SwiperSlide>
+    <SwiperSlide class="slide-demo"> Slide 4 </SwiperSlide>
+    <SwiperSlide class="slide-demo"> Slide 5 </SwiperSlide>
+    <SwiperSlide class="slide-demo"> Slide 6 </SwiperSlide>
+    <SwiperSlide class="slide-demo"> Slide 7 </SwiperSlide>
+    <SwiperSlide class="slide-demo"> Slide 8 </SwiperSlide>
+    <SwiperSlide class="slide-demo"> Slide 9 </SwiperSlide>
+  </SwiperWrapper>
+
+  <SwiperPagination />
+</Swiper>

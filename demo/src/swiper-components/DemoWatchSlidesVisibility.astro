@@ -1,0 +1,20 @@
+---
+// Copyright (c) Pascal Brand
+// MIT License
+//
+
+import './slide-demo.css' // .slide-demo definition: colors, aspect-ratio, sizes,...
+
+const filename = Astro.self.moduleId
+const lastIndex = Astro.self.moduleId!.lastIndexOf('/') + 1
+const title = filename!.substring(lastIndex, filename!.length - 6)
+
+---
+
+<div class="slide-demo work-in-progress">
+  <div>
+    <div> <strong> {title} Demo </strong> </div>
+    <br>
+    <div> WORK IN PROGRESS </div>
+  </div>
+</div>

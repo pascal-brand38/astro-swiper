@@ -1,0 +1,68 @@
+---
+// Copyright (c) Pascal Brand
+// MIT License
+//
+
+import { Swiper, SwiperWrapper, SwiperSlide, SwiperButtonPrev, SwiperButtonNext } from "astro-swiper";
+import './slide-demo.css' // .slide-demo definition: colors, aspect-ratio, sizes,...
+import DemoFirstSlide from "./DemoFirstSlide.astro";
+
+const title="Thumbs Gallery"
+
+---
+
+<Swiper
+  options={{
+    spaceBetween: 10,
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    astro: {
+      thumbSwiperUniqueSelector: "#myswiper-thumbs-gallery-thumbnail", // selector of the thumbnail swiper to link to
+    }
+  }}>
+  <SwiperWrapper>
+    <SwiperSlide class="slide-demo"> <DemoFirstSlide title={title}/> </SwiperSlide>
+    <SwiperSlide class="slide-demo"> <img src="/astro-dev/astro-swiper.png" alt="" /> </SwiperSlide>
+    <SwiperSlide class="slide-demo"> <img src="https://swiperjs.com/demos/images/nature-1.jpg" /> </SwiperSlide>
+    <SwiperSlide class="slide-demo"> <img src="https://swiperjs.com/demos/images/nature-2.jpg" /> </SwiperSlide>
+    <SwiperSlide class="slide-demo"> <img src="https://swiperjs.com/demos/images/nature-3.jpg" /> </SwiperSlide>
+    <SwiperSlide class="slide-demo"> <img src="https://swiperjs.com/demos/images/nature-4.jpg" /> </SwiperSlide>
+  </SwiperWrapper>
+
+  <SwiperButtonPrev />
+  <SwiperButtonNext />
+</Swiper>
+
+
+<Swiper
+  id="myswiper-thumbs-gallery-thumbnail"
+  options={{
+    spaceBetween: 10,
+    slidesPerView: 4,
+    freeMode: true,
+    watchSlidesProgress: true,
+  }}>
+  <SwiperWrapper>
+    <SwiperSlide class="slide-demo"> <DemoFirstSlide title={title}/> </SwiperSlide>
+    <SwiperSlide class="slide-demo"> <img src="/astro-dev/astro-swiper.png" alt="" /> </SwiperSlide>
+    <SwiperSlide class="slide-demo"> <img src="https://swiperjs.com/demos/images/nature-1.jpg" /> </SwiperSlide>
+    <SwiperSlide class="slide-demo"> <img src="https://swiperjs.com/demos/images/nature-2.jpg" /> </SwiperSlide>
+    <SwiperSlide class="slide-demo"> <img src="https://swiperjs.com/demos/images/nature-3.jpg" /> </SwiperSlide>
+    <SwiperSlide class="slide-demo"> <img src="https://swiperjs.com/demos/images/nature-4.jpg" /> </SwiperSlide>
+  </SwiperWrapper>
+</Swiper>
+
+<style>
+  #myswiper-thumbs-gallery-thumbnail .swiper-slide {
+    width: 25%;
+    height: 100%;
+    opacity: 0.4;
+  }
+
+  #myswiper-thumbs-gallery-thumbnail .swiper-slide-thumb-active {
+    opacity: 1;
+  }
+
+</style>

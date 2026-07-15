@@ -1,0 +1,42 @@
+---
+// Copyright (c) Pascal Brand
+// MIT License
+//
+
+import { Swiper, SwiperWrapper, SwiperSlide, SwiperPagination } from "astro-swiper";
+import './slide-demo.css' // .slide-demo definition: colors, aspect-ratio, sizes,...
+import DemoFirstSlide from "./DemoFirstSlide.astro";
+
+const title="Grid"
+
+---
+
+<Swiper
+  uniqueClass="myswiper-grid"
+  options={{
+    slidesPerView: 3,
+    grid: {
+      rows: 2,
+      fill: 'row',    // https://stackoverflow.com/questions/72059580/swiper-grid-module-is-not-working-as-expected
+    },
+    spaceBetween: 30,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+  }}
+>
+  <SwiperWrapper>
+    <SwiperSlide class="slide-demo"> <DemoFirstSlide title={title}/> </SwiperSlide>
+    <SwiperSlide class="slide-demo"> <img src="/astro-dev/astro-swiper.png" alt="" /> </SwiperSlide>
+    <SwiperSlide class="slide-demo"> Slide 3 </SwiperSlide>
+    <SwiperSlide class="slide-demo"> Slide 4 </SwiperSlide>
+    <SwiperSlide class="slide-demo"> Slide 5 </SwiperSlide>
+    <SwiperSlide class="slide-demo"> Slide 6 </SwiperSlide>
+    <SwiperSlide class="slide-demo"> Slide 7 </SwiperSlide>
+    <SwiperSlide class="slide-demo"> Slide 8 </SwiperSlide>
+    <SwiperSlide class="slide-demo"> Slide 9 </SwiperSlide>
+  </SwiperWrapper>
+
+  <SwiperPagination />
+</Swiper>

@@ -1,0 +1,71 @@
+---
+// Copyright (c) Pascal Brand
+// MIT License
+//
+
+import { Swiper, SwiperWrapper, SwiperSlide, SwiperButtonPrev, SwiperButtonNext } from "astro-swiper";
+import './slide-demo.css' // .slide-demo definition: colors, aspect-ratio, sizes,...
+import DemoFirstSlide from "./DemoFirstSlide.astro";
+
+const title='Change Direction'
+---
+
+<Swiper
+  id="change-direction-swiper"
+  class="my-swiper"
+  options={{
+    // direction: set in script part
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    // on.resize set in script part
+
+    // init is set to false to allow setting the direction and resize event listener
+    // before initialization in the scrip part
+    init: false,
+
+    // fix issue with swiper: https://stackoverflow.com/questions/65032015/setting-the-correct-height-in-vertical-mode-in-swiper/79046857#79046857
+    autoHeight: true,
+  }}
+  useCustomElement={false /* testing purpose only - not necessary */}
+>
+  <SwiperWrapper>
+    <SwiperSlide class="slide-demo">
+      <DemoFirstSlide title={title}>
+        Resize to dynamically change the swiper's direction.
+      </DemoFirstSlide>
+    </SwiperSlide>
+    <SwiperSlide class="slide-demo"> <img src="/astro-dev/astro-swiper.png" alt="" /> </SwiperSlide>
+    <SwiperSlide class="slide-demo"> Slide 3 </SwiperSlide>
+    <SwiperSlide class="slide-demo"> Slide 4 </SwiperSlide>
+    <SwiperSlide class="slide-demo"> Slide 5 </SwiperSlide>
+    <SwiperSlide class="slide-demo"> Slide 6 </SwiperSlide>
+    <SwiperSlide class="slide-demo"> Slide 7 </SwiperSlide>
+    <SwiperSlide class="slide-demo"> Slide 8 </SwiperSlide>
+    <SwiperSlide class="slide-demo"> Slide 9 </SwiperSlide>
+  </SwiperWrapper>
+
+  <SwiperButtonPrev />
+  <SwiperButtonNext />
+</Swiper>
+
+<script>
+  import { getSwiperFromUniqueSelector } from 'astro-swiper'
+
+  function getDirection(): ('horizontal' | 'vertical') {
+    return window.innerWidth <= 760 ? 'vertical' : 'horizontal';
+  }
+
+  window.addEventListener('load', () => {
+    const swiper = getSwiperFromUniqueSelector('#change-direction-swiper');
+    if (!swiper) {
+      console.error('Swiper instance not found');
+      return;
+    }
+
+    swiper.params.direction = getDirection() as 'horizontal' | 'vertical';
+    swiper.on('resize', (swiper) => swiper.changeDirection(getDirection()));
+    swiper.init();
+  })
+</script>

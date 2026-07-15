@@ -1,0 +1,49 @@
+---
+// Copyright (c) Pascal Brand
+// MIT License
+
+import { Swiper, SwiperWrapper, SwiperSlide} from "astro-swiper";
+import type { AstroSwiperOptions } from "astro-swiper";
+
+const astroSwiperOptions: AstroSwiperOptions = {
+slidesPerView: "auto",
+  autoplay: {
+    delay: 500,
+    disableOnInteraction: false,
+    waitForTransition: false,
+  },
+  speed: 400,
+  loop: true,
+};
+---
+
+<!-- Slider main container -->
+<Swiper options={astroSwiperOptions} class="not-content">
+  <!-- Additional required wrapper -->
+  <SwiperWrapper>
+    <!-- Slides -->
+    <SwiperSlide class="myswiper-slide">
+      <img class="myimg" src="https://picsum.photos/1024/512?nb=1" alt="" />
+    </SwiperSlide>
+    <SwiperSlide class="myswiper-slide">
+      <img class="myimg" src="https://picsum.photos/1024/512?nb=2" alt="" />
+    </SwiperSlide>
+    <SwiperSlide class="myswiper-slide">
+      <img class="myimg" src="https://picsum.photos/1024/512?nb=3" alt="" />
+    </SwiperSlide>
+  </SwiperWrapper>
+</Swiper>
+
+<style>
+  img {
+    /* max-width: 600px; */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .swiper-wrapper {
+    width: -moz-fit-content;
+    width: fit-content; /* https://stackoverflow.com/questions/68908072/swiper-js-slide-width */
+  }
+</style>

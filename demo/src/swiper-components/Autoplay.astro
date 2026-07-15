@@ -1,0 +1,41 @@
+---
+// Copyright (c) Pascal Brand
+// MIT License
+
+import { Swiper, SwiperWrapper, SwiperSlide } from "astro-swiper";
+
+---
+
+<Swiper
+  options={{    // check options at https://swiperjs.com/swiper-api
+    autoplay: {
+      delay: 700,
+      disableOnInteraction: false,
+      waitForTransition: false,
+    },
+    loop: true,
+  }}>
+  <SwiperWrapper>
+    <!-- Slides -->
+    <SwiperSlide>
+      <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
+    </SwiperSlide>
+    <SwiperSlide>
+      <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
+    </SwiperSlide>
+    <SwiperSlide>
+      <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
+    </SwiperSlide>
+  </SwiperWrapper>
+</Swiper>
+
+<style>
+  .swiper {
+    max-width: 455px;
+    aspect-ratio: 16/9;
+  }
+
+  img {
+    width: 100%;
+  }
+</style>

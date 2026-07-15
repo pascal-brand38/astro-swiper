@@ -1,0 +1,30 @@
+---
+// Copyright (c) Pascal Brand
+// MIT License
+//
+// utility to display the first slide of a given demo
+
+interface Props {
+  title: string,
+}
+
+const {
+  title,
+} = Astro.props
+
+---
+
+<div>
+  <div> <strong> {title} Demo </strong> </div>
+  <div class="code">
+    <slot />
+  </a>
+</div>
+
+<style>
+  .code {
+    text-align: left;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 10px;
+  }
+</style>

@@ -1,0 +1,45 @@
+---
+// Copyright (c) Pascal Brand
+// MIT License
+//
+
+import { Swiper, SwiperWrapper, SwiperSlide, SwiperButtonPrev, SwiperButtonNext, SwiperPagination } from "astro-swiper";
+import './slide-demo.css' // .slide-demo definition: colors, aspect-ratio, sizes,...
+import DemoFirstSlide from "./DemoFirstSlide.astro";
+
+const title='Hash Navigation'
+---
+
+<Swiper
+  class="my-swiper"
+  options={{
+    spaceBetween: 30,
+    hashNavigation: {
+      watchState: true,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  }}
+>
+  <SwiperWrapper>
+    <SwiperSlide class="slide-demo" data-hash="slide1"> <DemoFirstSlide title={title}/> </SwiperSlide>
+    <SwiperSlide class="slide-demo" data-hash="slide2"> <img src="/astro-dev/astro-swiper.png" alt="" /> </SwiperSlide>
+    <SwiperSlide class="slide-demo" data-hash="slide3"> Slide 3 </SwiperSlide>
+    <SwiperSlide class="slide-demo" data-hash="slide4"> Slide 4 </SwiperSlide>
+    <SwiperSlide class="slide-demo" data-hash="slide5"> Slide 5 </SwiperSlide>
+    <SwiperSlide class="slide-demo" data-hash="slide6"> Slide 6 </SwiperSlide>
+    <SwiperSlide class="slide-demo" data-hash="slide7"> Slide 7 </SwiperSlide>
+    <SwiperSlide class="slide-demo" data-hash="slide8"> Slide 8 </SwiperSlide>
+    <SwiperSlide class="slide-demo" data-hash="slide9"> Slide 9 </SwiperSlide>
+  </SwiperWrapper>
+
+  <SwiperButtonPrev />
+  <SwiperButtonNext />
+  <SwiperPagination />
+</Swiper>

@@ -9,7 +9,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "install-swipers": "cp ../../astro-dev/src/content/docs/packages/astro-swiper/*.astro src/swiper-components"
   },
   "dependencies": {
     "astro": "^7.0.9"
