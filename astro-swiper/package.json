@@ -7,7 +7,9 @@
   "scripts": {
     "format": "biome format --write && prettier -w \"**/*.astro\"",
     "lint": "biome lint",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "pnpm run --filter demo test",
+    "build": "pnpm run --filter demo build",
+    "dev": "pnpm run --filter demo dev"
   },
   "repository": {
     "type": "git",

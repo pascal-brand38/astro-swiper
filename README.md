@@ -32,6 +32,10 @@ Then commands are:
 To publish a new version on npm,
 
 ```bash
+# build and test the demo
+pnpm run build
+pnpm run test
+
 # update package.json and pnpm-lock.yaml, commit and create a tag
 pnpm version <patch | minor | major>
 
@@ -43,9 +47,11 @@ npm publish
 
 ## Demo
 
-Demo website using astro-swiper can be found in `demo`. In order to see it:
+Demo website using astro-swiper can be found in `demo`.
+It is used for testing. In order to see it, and test it:
 
 ```bash
 cd demo
 pnpm run dev
+pnpm run test
 ```
