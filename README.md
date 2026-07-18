@@ -1,8 +1,11 @@
 # astro-swiper
 
+Doc of `astro-swiper`: [astro-dev](https://pascal-brand38.github.io/astro-dev/packages/astro-swiper/)
+
 This `astro-swiper` is a monorepo made of
 
 * `astro-swiper`: the source of the [astro-swiper npm package](https://www.npmjs.com/package/astro-swiper)
+* `demo`: used to run tests
 
 
 Note that the doc is not part of this monorepo (yet?), but is part of
