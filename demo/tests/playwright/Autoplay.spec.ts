@@ -2,7 +2,7 @@
 // MIT License
 
 import { test, expect } from '@playwright/test'
-import { testSwiperContainer, testSwiperSlides } from './utils/utils'
+import { testSwiperAutoplay, testSwiperContainer, testSwiperSlides } from './utils/utils'
 
 const _name = 'Autoplay'
 
@@ -16,5 +16,7 @@ test.describe(`${_name} Tests`, () => {
     // Assert slides are present
     const slides = await testSwiperSlides(swiperContainer, _name)
 
+    // Assert autoplay functionality
+    // await testSwiperAutoplay(slides, 700) // Assuming 3-second autoplay delay
   })
 })
