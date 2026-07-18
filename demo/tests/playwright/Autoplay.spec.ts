@@ -17,6 +17,6 @@ test.describe(`${_name} Tests`, () => {
     const slides = await testSwiperSlides(swiperContainer, _name)
 
     // Assert autoplay functionality
-    // await testSwiperAutoplay(slides, 700) // Assuming 3-second autoplay delay
+    await testSwiperAutoplay(slides, 700) // Assuming 3-second autoplay delay
   })
 })

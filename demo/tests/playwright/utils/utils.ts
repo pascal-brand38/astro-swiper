@@ -15,15 +15,19 @@ async function testSwiperContainer(page: Page, name: string) {
 }
 
 async function testSwiperSlides(swiperContainer: Locator, name: string) {
-  const slides = swiperContainer.locator(`#test-${name} .swiper-slide`)
+  const slides = swiperContainer.locator(`.swiper-slide`)
   await expect(slides.first()).toBeVisible()
+  await expect(slides.first()).toHaveClass(/(^|\s)swiper-slide-active(\s|$)/)
 
   return slides
 }
 
 async function testSwiperAutoplay(swiperSlides: Locator, autoplayDelay: number) {
-  await _delay(autoplayDelay + 100) // wait for autoplay delay + 1s to ensure the slide has changed
-  await expect(swiperSlides.nth(1)).toBeVisible()
+  const slide2 = swiperSlides.nth(1) // get 2nd slide (index 1)
+  await expect(slide2).not.toHaveClass(/(^|\s)swiper-slide-active(\s|$)/)
+
+  await _delay(autoplayDelay) // wait for autoplay delay + 1s to ensure the slide has changed
+  await expect(slide2).toHaveClass(/(^|\s)swiper-slide-active(\s|$)/)
 }
 
 export { testSwiperContainer, testSwiperSlides, testSwiperAutoplay }
