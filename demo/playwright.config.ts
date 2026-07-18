@@ -1,3 +1,6 @@
+// Copyright (c) Pascal Brand
+// MIT License
+
 import { defineConfig, devices } from '@playwright/test'
 
 export default defineConfig({

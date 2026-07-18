@@ -1,30 +1,20 @@
-import { test, expect } from '@playwright/test'
+// Copyright (c) Pascal Brand
+// MIT License
 
-test.describe('Carousel E2E Tests', () => {
-  test('should load Swiper and support slide navigation', async ({ page }) => {
+import { test, expect } from '@playwright/test'
+import { testSwiperContainer, testSwiperSlides } from './utils/utils'
+
+const _name = 'Autoplay'
+
+test.describe(`${_name} Tests`, () => {
+  test('Load swiper and support slide navigation', async ({ page }) => {
     await page.goto('/')
 
     // Assert Swiper container exists
-    const swiperContainer = page.locator('.swiper')
-    await expect(swiperContainer).toBeVisible()
+    const swiperContainer = await testSwiperContainer(page, _name)
 
     // Assert slides are present
-    const slides = swiperContainer.locator('.swiper-slide')
-    await expect(slides.first()).toBeVisible()
+    const slides = await testSwiperSlides(swiperContainer, _name)
 
-    // // Assert pagination bullets are rendered
-    // const pagination = swiperContainer.locator('.swiper-pagination')
-    // await expect(pagination).toBeVisible()
-    // const bullets = pagination.locator('.swiper-pagination-bullet')
-    // await expect(bullets.first()).toBeVisible()
-
-    // // Assert next button is present and navigates slides
-    // const nextBtn = swiperContainer.locator('.swiper-button-next')
-    // await expect(nextBtn).toBeVisible()
-    // await nextBtn.click()
-
-    // // Verify slide state changes (Swiper updates classes on active slide)
-    // const activeSlide = swiperContainer.locator('.swiper-slide-active')
-    // await expect(activeSlide).toBeVisible()
   })
 })
