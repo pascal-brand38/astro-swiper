@@ -10,9 +10,11 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "test": "playwright test",
     "install-swipers": "cp ../../astro-dev/src/content/docs/packages/astro-swiper/*.{astro,css} src/swiper-components"
   },
   "dependencies": {
+    "@playwright/test": "^1.61.1",
     "astro": "^7.0.9",
     "astro-swiper": "link:..\\astro-swiper"
   }
