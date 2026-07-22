@@ -1,15 +1,15 @@
 # astro-swiper
 
 <div align="center" style="background-color: dark-grey; padding: 1rem;">
-  <a href="https://swiperjs.com" target="_blank"><img width="70" width="auto" src="astro-swiper/images/swiper-logo.svg"></a>
-  <a href="https://astro.build/" target="_blank"><img height="68" width="auto" src="astro-swiper/images/astro-logo.png"></a>
+  <a href="https://swiperjs.com" target="_blank"><img width="70" width="auto" src="packages/astro-swiper/images/swiper-logo.svg"></a>
+  <a href="https://astro.build/" target="_blank"><img height="68" width="auto" src="packages/astro-swiper/images/astro-logo.png"></a>
 
   # Astro Swiper
 
 > Astro Swiper - native component for [Swiper](https://github.com/nolimits4web/swiper).
 > Use for slides, carousel, photo swiper.
 
-  <img src="astro-swiper/images/astro-swiper.gif" />
+  <img src="packages/astro-swiper/images/astro-swiper.gif" />
 
 ## [Check demo](https://pascal-brand38.github.io/astro-dev/packages/astro-swiper)
 
@@ -19,7 +19,7 @@ Doc of `astro-swiper`: [astro-dev](https://pascal-brand38.github.io/astro-dev/pa
 
 This `astro-swiper` is a monorepo made of
 
-* [astro-swiper](https://github.com/pascal-brand38/astro-swiper/tree/main/astro-swiper): the source of the [astro-swiper npm package](https://www.npmjs.com/package/astro-swiper)
+* [astro-swiper](https://github.com/pascal-brand38/astro-swiper/tree/main/packages/astro-swiper): the source of the [astro-swiper npm package](https://www.npmjs.com/package/astro-swiper)
 * [demo](https://github.com/pascal-brand38/astro-swiper/tree/main/demo): used to run tests
 
 
@@ -39,7 +39,7 @@ Note that the doc is not part of this monorepo (yet?), but is part of
 In order to develop and publish the [astro-swiper npm package](https://www.npmjs.com/package/astro-swiper), please
 
 ```bash
-cd astro-swiper
+cd packages/astro-swiper
 ```
 
 Then commands are:
