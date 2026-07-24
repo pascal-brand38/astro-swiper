@@ -1,13 +1,13 @@
 <div align="center" style="background-color: dark-grey; padding: 1rem;">
-  <a href="https://swiperjs.com" target="_blank"><img width="70" width="auto" src="images/swiper-logo.svg"></a>
-  <a href="https://astro.build/" target="_blank"><img height="68" width="auto" src="images/astro-logo.png"></a>
+  <a href="https://swiperjs.com" target="_blank"><img width="70" width="auto" src="https://raw.githubusercontent.com/pascal-brand38/astro-swiper/HEAD/packages/astro-swiper/images/swiper-logo.svg"></a>
+  <a href="https://astro.build/" target="_blank"><img height="68" width="auto" src="https://raw.githubusercontent.com/pascal-brand38/astro-swiper/HEAD/packages/astro-swiper/images/astro-logo.png"></a>
 
   # Astro Swiper
 
 > Astro Swiper - native component for [Swiper](https://github.com/nolimits4web/swiper).
 > Use for slides, carousel, photo swiper.
 
-  <img src="images/astro-swiper.gif" />
+  <img src="https://raw.githubusercontent.com/pascal-brand38/astro-swiper/HEAD/packages/astro-swiper/images/astro-swiper.gif" />
 
 ## [Check demo](https://pascal-brand38.github.io/astro-dev/packages/astro-swiper)
 
