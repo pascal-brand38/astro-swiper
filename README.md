@@ -55,8 +55,7 @@ pnpm run build
 pnpm run test
 
 # update package.json and pnpm-lock.yaml, commit and create a tag
-npm version <patch | minor | major>
-git add . && git commit -s -m 'new version'
+pnpm version <patch | minor | major>
 git push  && git push --tags
 
 npm login
