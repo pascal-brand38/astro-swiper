@@ -1,6 +1,5 @@
 {
   "name": "astro-swiper monorepo",
-
   "scripts": {
     "build": "pnpm run --filter demo build",
     "dev": "pnpm run --filter demo dev",
@@ -12,7 +11,6 @@
     "pnpm": ">=7.1.0"
   },
   "packageManager": "pnpm@10.30.3",
-
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pascal-brand38/astro-swiper.git"
@@ -22,5 +20,6 @@
   "bugs": {
     "url": "https://github.com/pascal-brand38/astro-swiper/issues"
   },
-  "homepage": "https://pascal-brand38.github.io/astro-dev/packages/astro-swiper/"
+  "homepage": "https://pascal-brand38.github.io/astro-dev/packages/astro-swiper/",
+  "version": "0.1.0"
 }
