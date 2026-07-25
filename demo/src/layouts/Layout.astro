@@ -9,15 +9,24 @@
 		<title>Astro Basics</title>
 	</head>
 	<body>
-		<slot />
+		<div class="wrapper">
+			<slot />
+		</div>
 	</body>
 </html>
 
-<style>
+<style is:global>
 	html,
 	body {
 		margin: 0;
 		width: 100%;
 		height: 100%;
+	}
+
+	.wrapper {
+		margin: 1rem auto;
+		padding: 0 1rem; /* left and right padding so that the text does not start at the border of the screen */
+		width: 100%; /* full width */
+		max-width: 1024px; /* max width is limited (1024px by default) */
 	}
 </style>
