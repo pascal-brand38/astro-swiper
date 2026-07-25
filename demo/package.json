@@ -16,6 +16,6 @@
   "dependencies": {
     "@playwright/test": "^1.61.1",
     "astro": "^7.0.9",
-    "astro-swiper": "^2.7.1"
+    "astro-swiper": "link:..\\packages\\astro-swiper"
   }
 }

@@ -17,8 +17,8 @@ importers:
         specifier: ^7.0.9
         version: 7.0.9(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@24.13.3)(rollup@4.62.2)
       astro-swiper:
-        specifier: ^2.7.1
-        version: 2.7.1
+        specifier: link:..\packages\astro-swiper
+        version: link:../packages/astro-swiper
 
 packages:
 
@@ -838,10 +838,6 @@ packages:
     resolution: {integrity: sha512-COROpnaoap1E2F000S62r6A60uHZnmlvomhfyT2DlTcrY1OrBKn2UhH7qn5wTC9zMvD0AY7csdPSNwKP+7WiQw==}
     engines: {node: '>= 0.4'}
 
-  astro-swiper@2.7.1:
-    resolution: {integrity: sha512-emUShiQ6VH1DJloDtiPYsZqvnsQFtaQU4TitlplYta4t3VmtYGZktSBH3m+pBJplVG6d6RjiQ1/lF0t8Ldk4fw==}
-    engines: {node: '>=18', npm: '>=9.6.5', pnpm: '>=7.1.0'}
-
   astro@7.0.9:
     resolution: {integrity: sha512-WB5pA4LLQnmqjBh6EIu0z8aUV4q2/AoThgSZq57Rsp+oqqvPu7OwZ5eF+W4ku20TUTxIhiJW8dccuGvJPiW2UA==}
     engines: {node: '>=22.12.0', npm: '>=9.6.5', pnpm: '>=7.1.0'}
@@ -1367,10 +1363,6 @@ packages:
     resolution: {integrity: sha512-ekx94z1rRc5LDi6oSUaeRnYhd0UOJxdtQCL2rF8xpWxD3TPAsISWOrxezqGovqS38GRZOdpDfvQe3ts6F7nsng==}
     engines: {node: '>=16'}
     hasBin: true
-
-  swiper@12.2.0:
-    resolution: {integrity: sha512-K8uXsBZU6ME97Ia3xbBge8IRCnR1lOmIILzvY/jGVic7dSTQ530s3uO8RvXbPUtkkXLWIwmZLRPbtDxRWVAFdg==}
-    engines: {node: '>= 4.7.0'}
 
   tiny-inflate@1.0.3:
     resolution: {integrity: sha512-pkY1fj1cKHb2seWDy0B16HeWyczlJA9/WW3u3c4z/NiWDsO3DOU5D7nhTLE9CF0yXv/QZFY7sEJmj24dK+Rrqw==}
@@ -2156,10 +2148,6 @@ snapshots:
 
   aria-query@5.3.2: {}
 
-  astro-swiper@2.7.1:
-    dependencies:
-      swiper: 12.2.0
-
   astro@7.0.9(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@24.13.3)(rollup@4.62.2):
     dependencies:
       '@astrojs/compiler-rs': 0.3.1(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)
@@ -2841,8 +2829,6 @@ snapshots:
       csso: 5.0.5
       picocolors: 1.1.1
       sax: 1.6.0
-
-  swiper@12.2.0: {}
 
   tiny-inflate@1.0.3: {}
 
