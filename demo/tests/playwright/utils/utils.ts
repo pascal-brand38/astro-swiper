@@ -15,14 +15,14 @@ function getTestName(url: string): string {
   return currentFile.replace('.spec.ts', '')
 }
 
-async function testSwiperContainer(page: Page, testName: string) {
+async function _testSwiperContainer(page: Page, testName: string) {
   const swiperContainer = page.locator(`#test-${testName} .swiper`)
   await expect(swiperContainer).toBeVisible()
 
   return swiperContainer
 }
 
-async function testSwiperSlides(swiperContainer: Locator, testName: string) {
+async function _testSwiperSlides(swiperContainer: Locator, testName: string) {
   const slides = swiperContainer.locator(`.swiper-slide`)
   await expect(slides.first()).toBeVisible()
   await expect(slides.first()).toHaveClass(/(^|\s)swiper-slide-active(\s|$)/)
@@ -30,7 +30,7 @@ async function testSwiperSlides(swiperContainer: Locator, testName: string) {
   return slides
 }
 
-async function testSwiperAutoplay(swiperSlides: Locator, autoplayDelay: number) {
+async function _testSwiperAutoplay(swiperSlides: Locator, autoplayDelay: number) {
   const slide2 = swiperSlides.nth(1) // get 2nd slide (index 1)
   await expect(slide2).not.toHaveClass(/(^|\s)swiper-slide-active(\s|$)/)
 
@@ -48,19 +48,19 @@ async function testSwiper(config: Config) {
     await page.goto('/')
 
     // Assert Swiper container exists
-    const swiperContainer = await testSwiperContainer(page, config.testName)
+    const swiperContainer = await _testSwiperContainer(page, config.testName)
 
     // Assert slides are present
-    const slides = await testSwiperSlides(swiperContainer, config.testName)
+    const slides = await _testSwiperSlides(swiperContainer, config.testName)
 
     // Assert autoplay functionality
     if (config.autoplayDelay) {
-      await testSwiperAutoplay(slides, config.autoplayDelay) // Assuming 3-second autoplay delay
+      await _testSwiperAutoplay(slides, config.autoplayDelay) // Assuming 3-second autoplay delay
     }
   })
 }
 
-export { getTestName, testSwiper, testSwiperContainer, testSwiperSlides, testSwiperAutoplay, }
+export { getTestName, testSwiper, }
 export type { Config }
 
 
