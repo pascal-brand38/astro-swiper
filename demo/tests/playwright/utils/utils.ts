@@ -5,6 +5,12 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import { test, expect, type Page, type Locator, } from '@playwright/test'
 
+interface Config {
+  testName: string;
+  autoplayDelay?: number;
+  pagination?: boolean;
+}
+
 async function _delay(ms: number) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -38,9 +44,22 @@ async function _testSwiperAutoplay(swiperSlides: Locator, autoplayDelay: number)
   await expect(slide2).toHaveClass(/(^|\s)swiper-slide-active(\s|$)/)
 }
 
-interface Config {
-  testName: string;
-  autoplayDelay?: number;
+async function _testSwiperPagination(swiperContainer: Locator, swiperSlides: Locator) {
+  const pagination = swiperContainer.locator('.swiper-pagination')
+  await expect(pagination).toBeVisible()
+  const bullets = pagination.locator('.swiper-pagination-bullet')
+  await expect(bullets.first()).toBeVisible()
+
+  // check 3rd bullet is visible and click it to navigate to the 3rd slide
+  const bullet3 = bullets.nth(2) // get 3rd bullet (index 2)
+  await expect(bullet3).toBeVisible()
+  await bullet3.click()
+
+  // Verify slide state changes (Swiper updates classes on active slide)
+  await expect(bullet3).toHaveClass(/(^|\s)swiper-pagination-bullet-active(\s|$)/)
+  const slide3 = swiperSlides.nth(2) // get 3rd slide (index 2)
+  await expect(slide3).toBeVisible()
+  await expect(slide3).toHaveClass(/(^|\s)swiper-slide-active(\s|$)/)
 }
 
 async function testSwiper(config: Config) {
@@ -55,7 +74,12 @@ async function testSwiper(config: Config) {
 
     // Assert autoplay functionality
     if (config.autoplayDelay) {
-      await _testSwiperAutoplay(slides, config.autoplayDelay) // Assuming 3-second autoplay delay
+      await _testSwiperAutoplay(slides, config.autoplayDelay)
+    }
+
+    // Assert pagination functionality
+    if (config.pagination) {
+      await _testSwiperPagination(swiperContainer, slides)
     }
   })
 }

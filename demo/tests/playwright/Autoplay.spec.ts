@@ -6,7 +6,8 @@ import { getTestName, testSwiper, type Config } from './utils/utils'
 
 const config: Config = {
   testName: getTestName(import.meta.url),
-  autoplayDelay: 700, // Assuming 3-second autoplay delay
+  autoplayDelay: 700, // Assuming 700ms autoplay delay
+  // pagination: true, // Enable pagination testing
 }
 
 test.describe(`${config.testName} Tests`, () => {

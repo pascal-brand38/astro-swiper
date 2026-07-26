@@ -6,6 +6,7 @@ import { getTestName, testSwiper, type Config } from './utils/utils'
 
 const config: Config = {
   testName: getTestName(import.meta.url),
+  pagination: true, // Enable pagination testing
 }
 
 test.describe(`${config.testName} Tests`, () => {
