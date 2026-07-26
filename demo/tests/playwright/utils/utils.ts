@@ -38,7 +38,30 @@ async function testSwiperAutoplay(swiperSlides: Locator, autoplayDelay: number) 
   await expect(slide2).toHaveClass(/(^|\s)swiper-slide-active(\s|$)/)
 }
 
-export { getTestName, testSwiperContainer, testSwiperSlides, testSwiperAutoplay }
+interface Config {
+  testName: string;
+  autoplayDelay?: number;
+}
+
+async function testSwiper(config: Config) {
+  test(`Swiper ${config.testName}`, async ({ page }) => {
+    await page.goto('/')
+
+    // Assert Swiper container exists
+    const swiperContainer = await testSwiperContainer(page, config.testName)
+
+    // Assert slides are present
+    const slides = await testSwiperSlides(swiperContainer, config.testName)
+
+    // Assert autoplay functionality
+    if (config.autoplayDelay) {
+      await testSwiperAutoplay(slides, config.autoplayDelay) // Assuming 3-second autoplay delay
+    }
+  })
+}
+
+export { getTestName, testSwiper, testSwiperContainer, testSwiperSlides, testSwiperAutoplay, }
+export type { Config }
 
 
 // // Assert pagination bullets are rendered
