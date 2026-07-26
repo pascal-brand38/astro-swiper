@@ -1,20 +1,28 @@
 // Copyright (c) Pascal Brand
 // MIT License
 
+import { fileURLToPath } from 'url';
+import path from 'path';
 import { test, expect, type Page, type Locator, } from '@playwright/test'
 
 async function _delay(ms: number) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function testSwiperContainer(page: Page, name: string) {
-  const swiperContainer = page.locator(`#test-${name} .swiper`)
+function getTestName(url: string): string {
+  const __filename = fileURLToPath(url);
+  const currentFile = path.basename(__filename);
+  return currentFile.replace('.spec.ts', '')
+}
+
+async function testSwiperContainer(page: Page, testName: string) {
+  const swiperContainer = page.locator(`#test-${testName} .swiper`)
   await expect(swiperContainer).toBeVisible()
 
   return swiperContainer
 }
 
-async function testSwiperSlides(swiperContainer: Locator, name: string) {
+async function testSwiperSlides(swiperContainer: Locator, testName: string) {
   const slides = swiperContainer.locator(`.swiper-slide`)
   await expect(slides.first()).toBeVisible()
   await expect(slides.first()).toHaveClass(/(^|\s)swiper-slide-active(\s|$)/)
@@ -30,7 +38,7 @@ async function testSwiperAutoplay(swiperSlides: Locator, autoplayDelay: number) 
   await expect(slide2).toHaveClass(/(^|\s)swiper-slide-active(\s|$)/)
 }
 
-export { testSwiperContainer, testSwiperSlides, testSwiperAutoplay }
+export { getTestName, testSwiperContainer, testSwiperSlides, testSwiperAutoplay }
 
 
 // // Assert pagination bullets are rendered
