@@ -1,5 +1,5 @@
 packages:
-  - astro-swiper
+  - packages/astro-swiper
   - demo
 
 allowBuilds:
