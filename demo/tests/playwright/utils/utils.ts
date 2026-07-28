@@ -9,6 +9,7 @@ interface Config {
   testName: string;
   autoplayDelay?: number;
   pagination?: boolean;
+  navigation?: boolean;
 }
 
 async function _delay(ms: number) {
@@ -62,6 +63,30 @@ async function _testSwiperPagination(swiperContainer: Locator, swiperSlides: Loc
   await expect(slide3).toHaveClass(/(^|\s)swiper-slide-active(\s|$)/)
 }
 
+async function _testSwiperNavigation(swiperContainer: Locator, swiperSlides: Locator) {
+  const prevBtn = swiperContainer.locator('.swiper-button-prev')
+  const nextBtn = swiperContainer.locator('.swiper-button-next')
+  const slide1 = swiperSlides.nth(0) // get 1st slide (index 0)
+  const slide2 = swiperSlides.nth(1) // get 2nd slide (index 1)
+
+  await expect(prevBtn).toBeVisible()
+  await expect(nextBtn).toBeVisible()
+
+  await expect(slide1).toHaveClass(/(^|\s)swiper-slide-active(\s|$)/)
+  await expect(prevBtn).toBeDisabled() // prev button should be disabled on first slide
+  await expect(nextBtn).not.toBeDisabled() // next button should be enabled on first slide
+
+  await nextBtn.click()
+  await expect(slide2).toHaveClass(/(^|\s)swiper-slide-active(\s|$)/)
+  await expect(prevBtn).not.toBeDisabled() // prev button should be enabled on second slide
+  await expect(nextBtn).not.toBeDisabled() // next button should be enabled on second slide
+
+  await prevBtn.click()
+  await expect(slide1).toHaveClass(/(^|\s)swiper-slide-active(\s|$)/)
+  await expect(prevBtn).toBeDisabled() // prev button should be disabled on first slide
+  await expect(nextBtn).not.toBeDisabled() // next button should be enabled on first slide
+}
+
 async function testSwiper(config: Config) {
   test(`Swiper ${config.testName}`, async ({ page }) => {
     await page.goto('/')
@@ -80,6 +105,11 @@ async function testSwiper(config: Config) {
     // Assert pagination functionality
     if (config.pagination) {
       await _testSwiperPagination(swiperContainer, slides)
+    }
+
+    // Assert navigation functionality
+    if (config.navigation) {
+      await _testSwiperNavigation(swiperContainer, slides)
     }
   })
 }
