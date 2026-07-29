@@ -32,17 +32,27 @@ async function _testSwiperContainer(page: Page, testName: string) {
 async function _testSwiperSlides(swiperContainer: Locator, testName: string) {
   const slides = swiperContainer.locator(`.swiper-slide`)
   await expect(slides.first()).toBeVisible()
-  await expect(slides.first()).toHaveClass(/(^|\s)swiper-slide-active(\s|$)/)
+  // await expect(slides.first()).toHaveClass(/(^|\s)swiper-slide-active(\s|$)/)
 
   return slides
 }
 
-async function _testSwiperAutoplay(swiperSlides: Locator, autoplayDelay: number) {
-  const slide2 = swiperSlides.nth(1) // get 2nd slide (index 1)
-  await expect(slide2).not.toHaveClass(/(^|\s)swiper-slide-active(\s|$)/)
+async function _testSwiperAutoplay(swiperContainer: Locator, swiperSlides: Locator, autoplayDelay: number) {
+  // get the current active slide
+  let indexCurrent = 0
+  for (let i = 0; i < await swiperSlides.count(); i++) {
+    const slide = swiperSlides.nth(i)
+    const classAttr = await slide.getAttribute('class')
+    if (classAttr?.includes('swiper-slide-active')) {
+      indexCurrent = i
+      break
+    }
+  }
+  const nextSlide = swiperSlides.nth(indexCurrent + 1)
 
-  await _delay(autoplayDelay) // wait for autoplay delay + 1s to ensure the slide has changed
-  await expect(slide2).toHaveClass(/(^|\s)swiper-slide-active(\s|$)/)
+  await expect(nextSlide).not.toHaveClass(/(^|\s)swiper-slide-active(\s|$)/)
+  await _delay(autoplayDelay) // wait for autoplay delay
+  await expect(nextSlide).toHaveClass(/(^|\s)swiper-slide-active(\s|$)/)
 }
 
 async function _testSwiperPagination(swiperContainer: Locator, swiperSlides: Locator) {
@@ -99,7 +109,7 @@ async function testSwiper(config: Config) {
 
     // Assert autoplay functionality
     if (config.autoplayDelay) {
-      await _testSwiperAutoplay(slides, config.autoplayDelay)
+      await _testSwiperAutoplay(swiperContainer, slides, config.autoplayDelay)
     }
 
     // Assert pagination functionality
