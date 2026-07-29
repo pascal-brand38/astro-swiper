@@ -10,6 +10,7 @@ interface Config {
   autoplayDelay?: number;
   pagination?: boolean;
   navigation?: boolean;
+  scrollbar?: boolean;
 }
 
 async function _delay(ms: number) {
@@ -97,6 +98,11 @@ async function _testSwiperNavigation(swiperContainer: Locator, swiperSlides: Loc
   await expect(nextBtn).not.toBeDisabled() // next button should be enabled on first slide
 }
 
+async function _testSwiperScrollbar(swiperContainer: Locator) {
+  const scrollbar = swiperContainer.locator('.swiper-scrollbar')
+  await expect(scrollbar).toBeVisible()
+}
+
 async function testSwiper(config: Config) {
   test(`Swiper ${config.testName}`, async ({ page }) => {
     await page.goto('/')
@@ -120,6 +126,11 @@ async function testSwiper(config: Config) {
     // Assert navigation functionality
     if (config.navigation) {
       await _testSwiperNavigation(swiperContainer, slides)
+    }
+
+    // Assert scrollbar functionality
+    if (config.scrollbar) {
+      await _testSwiperScrollbar(swiperContainer)
     }
   })
 }

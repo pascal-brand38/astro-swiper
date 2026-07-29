@@ -5,7 +5,8 @@ import { defineConfig, devices } from '@playwright/test'
 
 export default defineConfig({
   testDir: './tests/playwright',
-  fullyParallel: true,
+  // fullyParallel: true,
+  workers: 1,
   // retries: 3,
   // failOnFlakyTests: false,
   // forbidOnly: !!process.env.CI,
