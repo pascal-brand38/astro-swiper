@@ -11,6 +11,7 @@ interface Config {
   pagination?: boolean;
   navigation?: boolean;
   scrollbar?: boolean;
+  lazyload?: boolean;
 }
 
 async function _delay(ms: number) {
@@ -103,6 +104,11 @@ async function _testSwiperScrollbar(swiperContainer: Locator) {
   await expect(scrollbar).toBeVisible()
 }
 
+async function _testSwiperLazyLoad(swiperContainer: Locator) {
+  const lazyImages = swiperContainer.locator('.swiper-lazy-preloader')
+  expect(lazyImages.first()).not.toBeUndefined() // No lazy images should be loaded initially
+}
+
 async function testSwiper(config: Config) {
   test(`Swiper ${config.testName}`, async ({ page }) => {
     await page.goto('/')
@@ -131,6 +137,11 @@ async function testSwiper(config: Config) {
     // Assert scrollbar functionality
     if (config.scrollbar) {
       await _testSwiperScrollbar(swiperContainer)
+    }
+
+    // Assert lazy load functionality
+    if (config.lazyload) {
+      await _testSwiperLazyLoad(swiperContainer)
     }
   })
 }
