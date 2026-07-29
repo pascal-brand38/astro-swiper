@@ -1,5 +1,5 @@
 {
-  "name": "astro-swiper demo",
+  "name": "demo",
   "type": "module",
   "engines": {
     "node": ">=22.12.0"

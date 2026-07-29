@@ -5,6 +5,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
+    "preversion": "pnpm run build && pnpm run test",
     "format": "biome format --write && prettier -w \"**/*.astro\"",
     "lint": "biome lint",
     "test": "pnpm run --filter demo test",
