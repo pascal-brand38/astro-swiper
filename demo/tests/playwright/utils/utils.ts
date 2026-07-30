@@ -14,7 +14,7 @@ interface Config {
   lazyload?: boolean;
 }
 
-async function _delay(ms: number) {
+async function delay(ms: number) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
@@ -24,14 +24,14 @@ function getTestName(url: string): string {
   return currentFile.replace('.spec.ts', '')
 }
 
-async function _testSwiperContainer(page: Page, testName: string) {
-  const swiperContainer = page.locator(`#test-${testName} .swiper`)
+async function testSwiperContainer(page: Page, testName: string, swiperClass: string = ".swiper"): Promise<Locator> {
+  const swiperContainer = page.locator(`#test-${testName} ${swiperClass}`).first()
   await expect(swiperContainer).toBeVisible()
 
   return swiperContainer
 }
 
-async function _testSwiperSlides(swiperContainer: Locator, testName: string) {
+async function testSwiperSlides(swiperContainer: Locator, testName: string) {
   const slides = swiperContainer.locator(`.swiper-slide`)
   await expect(slides.first()).toBeVisible()
   // await expect(slides.first()).toHaveClass(/(^|\s)swiper-slide-active(\s|$)/)
@@ -39,21 +39,24 @@ async function _testSwiperSlides(swiperContainer: Locator, testName: string) {
   return slides
 }
 
-async function _testSwiperAutoplay(swiperContainer: Locator, swiperSlides: Locator, autoplayDelay: number) {
-  // get the current active slide
-  let indexCurrent = 0
-  for (let i = 0; i < await swiperSlides.count(); i++) {
-    const slide = swiperSlides.nth(i)
+async function getActiveSlideIndex(slides: Locator, className: string= 'swiper-slide-active'): Promise<number> {
+  for (let i = 0; i < await slides.count(); i++) {
+    const slide = slides.nth(i)
     const classAttr = await slide.getAttribute('class')
-    if (classAttr?.includes('swiper-slide-active')) {
-      indexCurrent = i
-      break
+    if (classAttr?.includes(className)) {
+      return i
     }
   }
+  return -1
+}
+
+async function _testSwiperAutoplay(swiperContainer: Locator, swiperSlides: Locator, autoplayDelay: number) {
+  // get the current active slide
+  const indexCurrent = await getActiveSlideIndex(swiperSlides)
   const nextSlide = swiperSlides.nth(indexCurrent + 1)
 
   await expect(nextSlide).not.toHaveClass(/(^|\s)swiper-slide-active(\s|$)/)
-  await _delay(autoplayDelay) // wait for autoplay delay
+  await delay(autoplayDelay) // wait for autoplay delay
   await expect(nextSlide).toHaveClass(/(^|\s)swiper-slide-active(\s|$)/)
 }
 
@@ -114,10 +117,10 @@ async function testSwiper(config: Config) {
     await page.goto('/')
 
     // Assert Swiper container exists
-    const swiperContainer = await _testSwiperContainer(page, config.testName)
+    const swiperContainer = await testSwiperContainer(page, config.testName)
 
     // Assert slides are present
-    const slides = await _testSwiperSlides(swiperContainer, config.testName)
+    const slides = await testSwiperSlides(swiperContainer, config.testName)
 
     // Assert autoplay functionality
     if (config.autoplayDelay) {
@@ -146,21 +149,5 @@ async function testSwiper(config: Config) {
   })
 }
 
-export { getTestName, testSwiper, }
+export { getTestName, testSwiper, testSwiperContainer, testSwiperSlides, getActiveSlideIndex, delay,}
 export type { Config }
-
-
-// // Assert pagination bullets are rendered
-// const pagination = swiperContainer.locator('.swiper-pagination')
-// await expect(pagination).toBeVisible()
-// const bullets = pagination.locator('.swiper-pagination-bullet')
-// await expect(bullets.first()).toBeVisible()
-
-// // Assert next button is present and navigates slides
-// const nextBtn = swiperContainer.locator('.swiper-button-next')
-// await expect(nextBtn).toBeVisible()
-// await nextBtn.click()
-
-// // Verify slide state changes (Swiper updates classes on active slide)
-// const activeSlide = swiperContainer.locator('.swiper-slide-active')
-// await expect(activeSlide).toBeVisible()
