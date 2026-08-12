@@ -3,7 +3,7 @@
 
 import { fileURLToPath } from 'url';
 import path from 'path';
-import { test, expect, type Page, type Locator, } from '@playwright/test'
+import { test, expect, type Page, type Locator, type ConsoleMessage, } from '@playwright/test'
 
 interface Config {
   testName: string;
@@ -114,6 +114,7 @@ async function _testSwiperLazyLoad(swiperContainer: Locator) {
 
 async function testSwiper(config: Config) {
   test(`Swiper ${config.testName}`, async ({ page }) => {
+    const logs = getLogs(page)
     await page.goto('/')
 
     // Assert Swiper container exists
@@ -146,8 +147,21 @@ async function testSwiper(config: Config) {
     if (config.lazyload) {
       await _testSwiperLazyLoad(swiperContainer)
     }
+
+    const nErrors = logs.filter(log => log.includes('astro-swiper')).length;
+    expect(nErrors, `Expected 0 error, but found ${nErrors}`).toBe(0);
+    const nSwiperErrors = logs.filter(log => log.includes('Swiper')).length;
+    expect(nSwiperErrors, `Expected 0 error, but found ${nSwiperErrors}`).toBe(0);
   })
 }
 
-export { getTestName, testSwiper, testSwiperContainer, testSwiperSlides, getActiveSlideIndex, delay,}
+function getLogs(page: Page): string[] {
+  const logs: string[] = [];
+  page.on('console', (msg: ConsoleMessage) => {
+    logs.push(msg.text());
+  });
+  return logs;
+}
+
+export { getTestName, testSwiper, testSwiperContainer, testSwiperSlides, getActiveSlideIndex, delay, getLogs, }
 export type { Config }
