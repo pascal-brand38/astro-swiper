@@ -224,8 +224,8 @@ Renaming it in `MySwiper.astro` solves the issue.
 
 AI (chatgpt, gemini...) get confused when providing examples how to use `astro-swiper`.
 Common errors are:
-* missing `<SwiperWrapper>`
-* `<SwiperWrapper>` wrapping `<Swiper>` instead of `<SwiperSlide>`
+* missing `<SwiperWrapper>`. In such a case, a warning is logged on the console.
+* `<SwiperWrapper>` wrapping `<Swiper>` instead of `<SwiperSlide>`. In such a case, a warning is logged on the console.
 * options provided directly to `<Swiper>` instead of inside `options` variable, such as `<Swiper options={{...}}>`
 * adding `modules` in `options`. This is wrong. Modules are automatically added
 * installing `swiper` is not required

@@ -114,6 +114,32 @@ if (options?.astro?.thumbSwiperUniqueSelector === undefined && Astro.props.linkT
     options: AstroSwiperOptions,
     element: AstroSwiper,
   ) {
+    // look for SwiperWrapper and SwiperSlide children, and add the required classes if not present
+    let wrapper: HTMLElement | null = null;
+    if (options.astro?.useCustomElement !== false) {
+      // wrapper is a child of the astro-swiper element
+      wrapper = element.querySelector('.swiper-wrapper');
+    } else {
+      // the wrapper is a child of the parent of the astro-swiper element
+      const parent = element.parentElement;
+      wrapper = parent.querySelector('.swiper-wrapper');
+    }
+    if (!wrapper) {
+      console.warn(
+        `astro-swiper: <SwiperWrapper> not found in <Swiper class="${element.classList}">. <SwiperSlide> must be a child of <SwiperWrapper>.`,
+      );
+      // next code is experimental, to automatically add the wrapper if it is missing
+      // const slides = element.querySelectorAll('.swiper-slide');
+      // if (slides.length > 0) {
+      //   const wrapper = document.createElement('div');
+      //   wrapper.classList.add('swiper-wrapper');
+      //   slides.forEach((slide) => {
+      //     wrapper.appendChild(slide);
+      //   });
+      //   element.appendChild(wrapper);
+      // }
+    }
+
     const swiper = new Swiper(uniqueSelector, options);
     element.astroSwiper = swiper;
 

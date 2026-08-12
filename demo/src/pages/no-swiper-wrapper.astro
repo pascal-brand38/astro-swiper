@@ -1,0 +1,47 @@
+---
+// Copyright (c) Pascal Brand
+// MIT License
+
+import { Swiper, SwiperWrapper, SwiperSlide, SwiperButtonPrev, SwiperButtonNext } from "astro-swiper";
+import type { AstroSwiperType } from "astro-swiper";
+
+const astroSwiperOptions: AstroSwiperType = {
+  options: {
+    loop: true,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  },
+};
+---
+
+<!-- Slider main container -->
+<Swiper options={astroSwiperOptions.options} class="not-content">
+  <!-- Additional required wrapper -->
+    <!-- Slides -->
+    <SwiperSlide>
+      <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
+    </SwiperSlide>
+    <SwiperSlide>
+      <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
+    </SwiperSlide>
+    <SwiperSlide>
+      <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
+    </SwiperSlide>
+
+  <!-- navigation buttons -->
+  <SwiperButtonPrev />
+  <SwiperButtonNext />
+</Swiper>
+
+<style>
+  .swiper {
+    max-width: 455px;
+    aspect-ratio: 16/9;
+  }
+
+  img {
+    width: 100%;
+  }
+</style>
