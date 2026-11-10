@@ -5,7 +5,10 @@
 
 version: 2
 updates:
-  - package-ecosystem: "pnpm" # See documentation for possible values
+  - package-ecosystem: "npm" # See documentation for possible values
     directory: "/packages/astro-swiper" # Location of package manifests
     schedule:
       interval: "weekly"
+    allow:
+      # Only swiper will be updated
+      - dependency-name: "swiper"
